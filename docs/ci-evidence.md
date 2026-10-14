@@ -11,3 +11,5 @@ This extends macOS evidence to a fresh Linux CI environment. Parties still share
 ## Bounded goal candidate
 
 [Run 38516183503](https://github.com/Begin-AI/begin-network/actions/runs/38516183503) succeeded at `db98de18a9d20b9e5bd859d07a950b17c954b97d`: 120 core tests, index validation, bounded goal demonstration and separate MPC job. [Run 38516451571](https://github.com/Begin-AI/begin-network/actions/runs/38516451571) succeeded at `cc2b30cf13d5d1bf4a357eecb7e06be8f3816f5c`, adding the capability-reporting command and its test (121 total). These are fresh Linux installations from the hashlocked core dependencies, not source-path test shortcuts.
+
+[Run 38516650751](https://github.com/Begin-AI/begin-network/actions/runs/38516650751) succeeded at `117afaf39b06c96c656c3a454b8d3da85b430b29`, additionally building the release distributions and testing the unpacked source archive with its installed runtime: all 121 tests and the three-process goal passed. This directly covers the source-fixture packaging repair, beyond checkout-only validation.

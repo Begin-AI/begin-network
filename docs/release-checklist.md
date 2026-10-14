@@ -4,7 +4,7 @@ This ledger preserves the full founder objective and the founding brief's distin
 
 | Required outcome | Current inspectable evidence | Result and remaining limits |
 | --- | --- | --- |
-| Patent-guided decentralized design | AGENTS.md, protocol.md, charter.md; no common signing root in fixtures | Architectural alignment documented; no claim of implementing every patent embodiment |
+| Patent-guided decentralized design | AGENTS.md, patent-design-map.md, protocol.md, charter.md; no common signing root in fixtures | Architectural alignment documented; no claim of implementing every patent embodiment |
 | README and agent manifest | README.md, agent-manifest.json | Present, explicitly experimental/synthetic; capability reporting is local only |
 | Charter and versioned protocol schema | charter.md, protocol.md, signing-profile.md; five schemas in schemas/ and installed package | Present; full target state machine is not universally enforced |
 | Methods and private-matching specification | matching.md, local-discovery.md, private-discovery-experiment.md, mpc-evaluation.md | Distinct lexical/concept/MiniLM/local-owner/MPC mechanisms tested; complete private discovery remains incomplete |
@@ -17,7 +17,7 @@ This ledger preserves the full founder objective and the founding brief's distin
 | Coordinators coordinate | coordinator_process_demo.py, goal_process_demo.py; process tests | Independent OS processes route signed requests, fail over, execute bounded fixture and return encrypted signed result; same-host HTTP only |
 | Goals produce useful bounded outcomes | goal-exchange.md, execution.md, goal-processes.md | Synthetic mentor proposal and interval-overlap calculation with one-unit spend, delayed result and cached retry; no real human encounter or external calendar |
 | Embeddings retain correct information | embedding-evaluation.md, frozen 24-case corpus/results, intention tests | Actual pinned pretrained model measured; five false positives and one false negative prevent semantic reliability claims; manual demo vectors labeled separately |
-| Reproducible package and CI | requirements.lock, package-build-evidence.json, CI run 38516183503 at db98de18a9d20b9e5bd859d07a950b17c954b97d | 121 tests pass locally and Linux cc2b30c CI run 38516451571 succeeded; unpacked source archive passed 121 tests and process goal after missing fixture/helper repair; new packaging CI must pass |
+| Reproducible package and CI | requirements.lock, package-build-evidence.json, CI run 38516183503 at db98de18a9d20b9e5bd859d07a950b17c954b97d | 121 tests pass locally and Linux cc2b30c CI run 38516451571 succeeded; unpacked source archive passed 121 tests and process goal after missing fixture/helper repair; Linux packaging CI run 38516650751 at 117afaf also passed the unpacked archive suite and process goal |
 | Private-source/secret/dependency review | release-audit.md, dependency-audit.json, exact historical gitleaks fingerprints | Scoped automatic history/staged scan and known-advisory audit; not security certification or legal clearance |
 | Publication rights | LICENSE-DECISION.md, dependencies.md | UNRESOLVED owner choice: code license and patent treatment; no license grant inferred |
 | Actual public release | GitHub visibility and founder authorization | Not authorized yet; repo must remain private |
