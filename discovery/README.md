@@ -6,6 +6,6 @@ It publishes protocol/schema versions, experimental method descriptions, and opt
 
 The strict schema rejects undeclared fields. Do not include personal intentions, raw vectors, private memberships, user activity, request contents, or mailbox addresses. Endpoint URLs have no query, fragment, or embedded credentials. Advertising an endpoint does not authorize clients to fetch it: operators must implement SSRF protection, local network restrictions, timeouts, and explicit fetch policy.
 
-Methods declare implemented capabilities separately from experimental status. Semantic-baseline v0 is a planned synthetic-only method and MUST NOT be used for live private discovery. Public entries are unverified self-descriptions. Trust signatures, maintainer identity, freshness checks, and service certification are future work.
+Methods declare implemented capabilities separately from experimental status. Semantic-baseline v0 is an implemented synthetic-only baseline and MUST NOT be used for live private discovery. Public entries are unverified self-descriptions. Trust signatures, maintainer identity, freshness checks, and service certification are future work.
 
 Validate with `begin-network validate-index discovery/index.json`. This verifies structure and duplicate identifiers only. It does not verify signatures, service availability, privacy, permissions, or malicious content disguised as a description. Human review is required before publication.

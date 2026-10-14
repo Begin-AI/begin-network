@@ -1,0 +1,216 @@
+[
+  {
+    "name": "complementary exact",
+    "query": {
+      "id": "q",
+      "text": "python",
+      "purpose": "window",
+      "role": "seek"
+    },
+    "candidate": {
+      "id": "c",
+      "text": "python",
+      "purpose": "window",
+      "role": "offer"
+    },
+    "expected_match": true
+  },
+  {
+    "name": "complementary synonyms",
+    "query": {
+      "id": "q",
+      "text": "gardening",
+      "purpose": "window",
+      "role": "seek"
+    },
+    "candidate": {
+      "id": "c",
+      "text": "horticulture",
+      "purpose": "window",
+      "role": "offer"
+    },
+    "expected_match": true
+  },
+  {
+    "name": "mirror synonyms",
+    "query": {
+      "id": "q",
+      "text": "cooking",
+      "purpose": "mirror",
+      "role": "peer"
+    },
+    "candidate": {
+      "id": "c",
+      "text": "meals",
+      "purpose": "mirror",
+      "role": "peer"
+    },
+    "expected_match": true
+  },
+  {
+    "name": "social peers",
+    "query": {
+      "id": "q",
+      "text": "guitar",
+      "purpose": "social",
+      "role": "peer"
+    },
+    "candidate": {
+      "id": "c",
+      "text": "musician",
+      "purpose": "social",
+      "role": "peer"
+    },
+    "expected_match": true
+  },
+  {
+    "name": "same role is not help",
+    "query": {
+      "id": "q",
+      "text": "python",
+      "purpose": "window",
+      "role": "seek"
+    },
+    "candidate": {
+      "id": "c",
+      "text": "python",
+      "purpose": "window",
+      "role": "seek"
+    },
+    "expected_match": false
+  },
+  {
+    "name": "decline overrides relevance",
+    "query": {
+      "id": "q",
+      "text": "python",
+      "purpose": "window",
+      "role": "seek"
+    },
+    "candidate": {
+      "id": "c",
+      "text": "python",
+      "purpose": "window",
+      "role": "offer",
+      "consent": false
+    },
+    "expected_match": false
+  },
+  {
+    "name": "purpose separation",
+    "query": {
+      "id": "q",
+      "text": "python",
+      "purpose": "window",
+      "role": "seek"
+    },
+    "candidate": {
+      "id": "c",
+      "text": "python",
+      "purpose": "mirror",
+      "role": "peer"
+    },
+    "expected_match": false
+  },
+  {
+    "name": "language constraint",
+    "query": {
+      "id": "q",
+      "text": "python",
+      "purpose": "window",
+      "role": "seek"
+    },
+    "candidate": {
+      "id": "c",
+      "text": "python",
+      "purpose": "window",
+      "role": "offer",
+      "language": "fr"
+    },
+    "expected_match": false
+  },
+  {
+    "name": "location constraint",
+    "query": {
+      "id": "q",
+      "text": "python",
+      "purpose": "window",
+      "role": "seek",
+      "location": "halifax"
+    },
+    "candidate": {
+      "id": "c",
+      "text": "python",
+      "purpose": "window",
+      "role": "offer"
+    },
+    "expected_match": false
+  },
+  {
+    "name": "required qualification",
+    "query": {
+      "id": "q",
+      "text": "python",
+      "purpose": "window",
+      "role": "seek",
+      "required_tags": [
+        "verified"
+      ]
+    },
+    "candidate": {
+      "id": "c",
+      "text": "python",
+      "purpose": "window",
+      "role": "offer"
+    },
+    "expected_match": false
+  },
+  {
+    "name": "no topic overlap",
+    "query": {
+      "id": "q",
+      "text": "python",
+      "purpose": "window",
+      "role": "seek"
+    },
+    "candidate": {
+      "id": "c",
+      "text": "gardening",
+      "purpose": "window",
+      "role": "offer"
+    },
+    "expected_match": false
+  },
+  {
+    "name": "negation adversary",
+    "query": {
+      "id": "q",
+      "text": "python",
+      "purpose": "window",
+      "role": "seek"
+    },
+    "candidate": {
+      "id": "c",
+      "text": "no python",
+      "purpose": "window",
+      "role": "offer"
+    },
+    "expected_match": false
+  },
+  {
+    "name": "topic stuffing adversary",
+    "query": {
+      "id": "q",
+      "text": "python",
+      "purpose": "window",
+      "role": "seek"
+    },
+    "candidate": {
+      "id": "c",
+      "text": "python garden food music",
+      "purpose": "window",
+      "role": "offer"
+    },
+    "expected_match": false
+  }
+]

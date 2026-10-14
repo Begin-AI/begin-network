@@ -1,12 +1,12 @@
 # Begin protocol — draft 0.1
 
-Status: proposed contract, not an implemented secure protocol. Normative words describe target requirements. Only discovery-index structural validation is executable today.
+Status: proposed contract, not an implemented secure protocol. Normative words describe target requirements. Index validation, the experimental signing profile, direct grants, sealed content, local mailboxes, and synthetic matching are executable. Full protocol enforcement and private semantic discovery remain incomplete.
 
 ## Design authority and decentralization
 
 When design choices are uncertain, consult [US11711348B2](https://patents.google.com/patent/US11711348B2/en), especially Figures 1–9 and its detailed description, together with the founding brief and explicit founder decisions. The network serves a decentralized human-and-agent world. Independent services and device-local agents can discover, coordinate, and improve methods without a required Begin-operated service. Agent-proposed improvements require explicit adoption and cannot alter existing delegations.
 
-The stable foundation is a versioned signing and validation contract. Each receiver checks both cryptographic authenticity and applicable protocol/permission rules. A signed but noncompliant request MUST be rejected. There is no universal Begin signing key, shared secret, or company-issued approval required for each request. Key rotation and protocol evolution remain possible through explicit migration rules. Patent vector “signatures” describe semantic fit; they are not cryptographic proofs of compliance. The exact signing profile remains unresolved in this draft.
+The stable foundation is a versioned signing and validation contract. Each receiver checks both cryptographic authenticity and applicable protocol/permission rules. A signed but noncompliant request MUST be rejected. There is no universal Begin signing key, shared secret, or company-issued approval required for each request. Key rotation and protocol evolution remain possible through explicit migration rules. Patent vector “signatures” describe semantic fit; they are not cryptographic proofs of compliance. The experimental signing profile is specified in `signing-profile.md`; independent security review remains outstanding.
 
 ## Roles and boundaries
 
@@ -28,7 +28,7 @@ CapabilityAdvertisement, DiscoveryQuery, MatchProposal, AuthorizationGrant, Seal
 
 ## Authentic envelope target
 
-Use a reviewed signed-message standard; exact cryptographic profile and canonicalization are unresolved. The protected content MUST bind protocol version, message type, sender key, request ID, audience, issued/expiry times, ciphertext, and permission-proof references. Receivers independently check the signature, supported profile, audience, freshness, replay state, and permission chain. Reject unknown critical fields. Encryption and signing keys are distinct roles. Key discovery and rotation must resist substitution.
+The experimental profile uses compact JWS/Ed25519 with exact transmitted bytes as signing input; see `signing-profile.md`. External review remains outstanding. The protected content MUST bind protocol version, message type, sender key, request ID, audience, issued/expiry times, ciphertext, and permission-proof references. Receivers independently check the signature, supported profile, audience, freshness, replay state, and permission chain. Reject unknown critical fields. Encryption and signing keys are distinct roles. Key discovery and rotation must resist substitution.
 
 ## Authorization target
 
@@ -44,7 +44,7 @@ Raw vectors are sensitive. TLS alone does not hide vectors from node operators. 
 
 ## Asynchronous delivery target
 
-Mailboxes store expiring encrypted messages scoped to recipients, with quotas, acknowledgements, deduplication, retry, and later retrieval. Request IDs and operation IDs provide idempotency. Expired or revoked work cannot be resumed as fresh work. Exactly-once external effects require application-specific transaction support. No mailbox service is implemented yet.
+Mailboxes store expiring encrypted messages scoped to recipients, with quotas, acknowledgements, deduplication, retry, and later retrieval. Request IDs and operation IDs provide idempotency. Expired or revoked work cannot be resumed as fresh work. Exactly-once external effects require application-specific transaction support. A durable local mailbox reference exists; authenticated multi-node networking remains unfinished.
 
 ## Provenance and extensions
 

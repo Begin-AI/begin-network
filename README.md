@@ -8,7 +8,7 @@ Any participant may initiate. Every participant chooses. Authority stays bounded
 
 ## Status
 
-Experimental specification and executable public-index validation only. No live discovery service, private semantic matching, authorization verifier, remote runner, or personal-data participation is implemented. No P1–E4 gate is claimed as passing. This repository is private until explicitly approved for publication.
+Experimental protocol/runtime under private development. Implemented: local Ed25519 signing and envelope checks, direct scoped grants, receiver-bound sealed content, durable local mailboxes, public-index validation, and two synthetic matching baselines. Python/Node crypto interoperability and an independent fresh-install agent trial are recorded in docs. These do not establish a secure live network: private semantic discovery, complete delegation/revocation, multi-node routing, cumulative budgets, and real embedding quality remain unfinished. No P1–E4 gate is claimed fully passing. Repository remains private until explicitly approved for publication.
 
 ## Run
 
@@ -28,6 +28,12 @@ The example index contains methods and schemas, with **zero operating nodes**. I
 - [Protocol draft](docs/protocol.md)
 - [Publishable discovery index](discovery/README.md)
 - [Index schema](schemas/discovery-index.schema.json)
+- [Signing profile](docs/signing-profile.md)
+- [Matching experiments](docs/matching.md)
+- [Mailbox coordination](docs/coordination.md)
+- [Threat model](docs/threat-model.md)
+- [Completion audit](docs/completion-audit.md)
+- [Independent agent install evidence](docs/agent-install-evidence.md)
 - [Release gates](docs/release-gates.md)
 - [Implementation roadmap](docs/roadmap.md)
 - [Contribution rules](CONTRIBUTING.md)

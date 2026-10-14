@@ -5,13 +5,19 @@
   "entrypoint": "README.md",
   "discovery_index": "discovery/index.json",
   "implemented": [
-    "public-index-structural-validation"
+    "public-index-structural-validation",
+    "local-ed25519-envelope-verification",
+    "direct-scope-grants",
+    "experimental-sealed-content",
+    "local-durable-mailbox",
+    "synthetic-matching-baselines"
   ],
   "not_implemented": [
-    "private-matching",
-    "authorization-verifier",
-    "mailboxes",
-    "remote-execution"
+    "private-semantic-matching",
+    "delegation-chains",
+    "live-multi-node-routing",
+    "cumulative-budgets",
+    "remote-code-execution"
   ],
   "data_policy": "synthetic-only",
   "authority": "This manifest grants no permissions; host policy applies."

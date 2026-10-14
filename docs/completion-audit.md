@@ -1,0 +1,42 @@
+# Completion audit
+
+Baseline assessment: 2026-10-14, before runtime implementation. This matrix is a living evidence ledger. Missing evidence means unfinished, even if a design is documented. Public publication remains a separate explicit founder decision; work may make the private repository publishable without making it public.
+
+## Original objective and required deliverables
+
+Build a complete publishable repository anchored in the patent and founding brief, including the protocol and publishable discovery index. Test different mechanisms, independent agents, agent goals, runtime acquisition and signing, incoming verification, coordinating coordinators, and information retained by representations. Do not replace this with a schema-only seed or label synthetic plaintext as private discovery.
+
+| Requirement | Authoritative proof required | Baseline evidence / state |
+|---|---|---|
+| Patent-aligned independent operation | Documented mapping of Figures 1–9 and founder decisions; runnable network without company approval | `AGENTS.md`, `docs/protocol.md` document direction. Runtime proof missing. |
+| Stable protocol contract | Exact wire format, canonicalization/profile, version rejection, deterministic vectors and normative state transitions | `docs/protocol.md` draft leaves signing profile unresolved. Unfinished. |
+| Runtime download and agent use | Clean isolated install from built artifact, agent generates key/signature, independent verifier accepts | Python package exists for index validator only. No runtime acquisition proof. |
+| Authentic incoming requests | Cross-implementation signature, altered bytes, wrong audience, expiry, replay and forged-authority failures | P1 not demonstrated. |
+| Bounded grants and goals | Scope attenuation, human/agent initiative, decline/pause/exit, no implicit rights, atomic budgets and revocation | P3 and D2 not demonstrated. |
+| Coordinator coordination | Multiple processes with separate keys/state, inter-node route, loop/refusal handling, failover and expiry | P4 not demonstrated. |
+| Offline continuity | Disconnect/reconnect, encrypted retained response, retries/deduplication, TTL, revoked resumption rejected | No mailbox implemented at baseline. |
+| Sealed disclosure | Receiver-specific encryption; key release requires match and authority; tamper/wrong recipient failures | Missing. |
+| Private semantic discovery | Named mechanism, adversaries/collusion, measured transcript/leakage, probing/inversion and authorization evidence | P2 missing. Research plan in `docs/threat-model.md` is not implementation evidence. |
+| Faithful useful representations | Versioned labeled corpus with facts/aspirations/inferences distinct, complementary roles, hard constraints, multilingual error metrics, incompatible-model rejection | E1–E4 missing. |
+| Need and fair opportunity | Cases with no public profile/contribution, newcomer participation, no authority from compute/extra keys | D1/D4 missing. |
+| Personal control | Inspect/edit/retire purpose-bound mirror/window/social data; outputs obey edits and expiry | D3 missing. |
+| Independent agent tests | Different agents follow documented install/use without hidden intervention; recorded commands/results and failures | Missing. Agent review alone is not runtime interoperability. |
+| Publishable discovery index | Public schema + validator + usable methods/node metadata + offline mirror/bootstrap instructions, no private content | `discovery/index.json`, schema and seven test definitions exist. No live nodes advertised. Structural evidence only. |
+| Reproducible release | Clean environment install, tests, demo, packaged schemas/examples, CI, dependency review and honest status | Baseline package/test files exist; fresh installed-run evidence pending. |
+| Publication rights | Founder-approved code/patent license, attribution/dependency inventory, no private source or secrets | Explicit licensing decision unresolved. No patent grant inferred. |
+
+## Baseline commands observed
+
+`python3 -m unittest discover -s tests -v` in an uninstalled system environment fails to import `begin_network`. `PYTHONPATH=src python3 -m unittest discover -s tests -v` runs seven tests, with six passing and `test_invalid_timestamp` failing in that system environment. This is not the declared clean installation path; install declared extras in an isolated environment and repeat before attributing the failure to source. Never replace this record with an unqualified claim that tests passed.
+
+## Evidence update rules
+
+Record commit/artifact hash, command, environment, expected result, observed result and scope for each completed row. Independent processes in one machine prove process separation, not arbitrary network/platform interoperability. An independent verifier must implement the wire contract separately; two callers of the same verifier do not prove independent implementation. A toy fixed vocabulary or hash embedding provides a useful baseline but does not establish real-world semantic quality. Preserve failed experiments and current limitations.
+
+P1–E4 remain individually gated by `docs/release-gates.md`; publishing an experimental repository and enabling personal-data participation have different evidence requirements. A release must accurately state which gates passed, which are experimental, and what remains unsupported. The objective is unfinished until every requested deliverable is supported at its actual scope.
+
+## Runtime milestone evidence (2026-10-14)
+
+Implemented experiments now supersede the baseline-only implementation state above; the full objective remains unfinished. The dedicated `.venv` has declared dependencies and all current tests pass. Independent noneditable install is documented in `agent-install-evidence.md`. Node/Python interoperability is exercised by `test_interop.py`; it proves crypto wire compatibility, not full independent policy implementation. Direct grants, persistent replay, recipient-bound experimental encryption and mailbox durability/concurrency have dedicated adversarial tests. Sealed ciphertext substitution found in review was repaired by signing the box digest. `signing-review.md` tracks findings.
+
+Matching evidence: two plaintext synthetic baselines on 13 fixed cases. Both retain two false positives; vocabulary generalization, multilingual semantic quality and P2 remain unproved. No live network, complete protocol state machine, cumulative budgets, grant chains, secure conditional key-release service, agent-host adapters or complete multi-node routing exists. Licensing remains unresolved. The milestone must not be described as publishable completion.

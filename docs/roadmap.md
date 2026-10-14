@@ -1,8 +1,8 @@
 # Implementation roadmap
 
-1. Seed (current): founding brief, protocol draft, public-index schema and validator, synthetic index, CI. No privacy claims.
-2. Define cryptographic profile and threat model; implement envelope verifier, narrowed grants, replay store, expiry and revocation tests.
-3. Build complementary-fit synthetic corpus and versioned method interfaces; benchmark private-matching candidates separately from utility baselines.
+1. Seed (implemented): founding brief, protocol draft, public-index schema and validator, synthetic index, CI. No privacy claims.
+2. Experimental signing profile, threat model, envelope verifier, direct grants, persistent replay store, sealed content and adversarial tests implemented. Next: chain attenuation, fresh revocation distribution, atomic budgets, key-release service and review.
+3. Two synthetic baselines and a fixed 13-case corpus implemented, including documented failures. Next: build held-out complementary-fit corpus and versioned method interfaces; benchmark private-matching candidates separately from utility baselines.
 4. Implement independent discovery/mailbox nodes and agent CLI adapter. Prove offline retrieval, retries, deduplication, quotas, and failover.
 5. Demonstrate a synthetic help-seeker/helper connection with disclosure after authorization; include decline, no-match, revoked and failed outcomes. A plaintext demo cannot satisfy P2.
 6. Independent implementation interoperability and published P1–E4 evidence; then opt-in personal-data pilots.
