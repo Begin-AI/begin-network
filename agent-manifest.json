@@ -10,13 +10,22 @@
     "direct-scope-grants",
     "experimental-sealed-content",
     "local-durable-mailbox",
-    "synthetic-matching-baselines"
+    "synthetic-matching-baselines",
+    "experimental-delegation-chains",
+    "single-owner-atomic-unit-budgets",
+    "signed-coordinator-routing",
+    "three-process-loopback-routing-demo",
+    "editable-intention-contracts",
+    "owner-local-encrypted-query-matching",
+    "pretrained-embedding-evaluation",
+    "three-party-mpc-predicate-experiment"
   ],
   "not_implemented": [
-    "private-semantic-matching",
-    "delegation-chains",
-    "live-multi-node-routing",
-    "cumulative-budgets",
+    "complete-private-candidate-discovery",
+    "malicious-secure-private-matching",
+    "reviewed-conditional-key-release",
+    "secure-public-network-deployment",
+    "distributed-budget-settlement",
     "remote-code-execution"
   ],
   "data_policy": "synthetic-only",

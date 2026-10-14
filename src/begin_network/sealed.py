@@ -55,6 +55,21 @@ def open_authorized(box, recipient_private, request, grant, authority, now, *, m
     if matched is not True:
         raise Rejected('match required before disclosure')
     authorize(request, grant, authority, now, revoked_grants)
+    return _decrypt_bound(box, recipient_private, request)
+
+
+def open_match_query(box, recipient_private, request, grant, authority, now, *, revoked_grants=()):
+    """Pre-match disclosure to an explicitly permitted participant, not a node.
+
+    Does not release the separately sealed full request. Inputs must be verified.
+    """
+    authorize(request, grant, authority, now, revoked_grants)
+    if request['body']['action'] != 'match' or request['body']['purpose'] != 'begin-discovery':
+        raise Rejected('explicit matching permission required')
+    return _decrypt_bound(box, recipient_private, request)
+
+
+def _decrypt_bound(box, recipient_private, request):
     if not isinstance(box, dict) or set(box) != {'profile', 'ephemeral', 'nonce', 'ciphertext'} or box['profile'] != 'begin-sealed-v1':
         raise Rejected('invalid sealed profile')
     if request['body'].get('sealed_digest') != sealed_digest(box):

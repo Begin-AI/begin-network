@@ -45,6 +45,12 @@ class IndexTests(unittest.TestCase):
             with self.assertRaises((ValueError, ValidationError)):
                 validate_index(self.index)
 
+    def test_method_contract_and_artifact_paths(self):
+        for method in self.index['methods']:
+            self.assertTrue((ROOT/method['implementation']).is_file())
+        del self.index['methods'][0]['model']
+        with self.assertRaises(ValidationError): validate_index(self.index)
+
     def test_invalid_timestamp(self):
         self.index['generated_at'] = 'yesterday'
         with self.assertRaises(ValidationError):

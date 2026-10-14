@@ -1,0 +1,165 @@
+{
+  "all_predicates_equal": true,
+  "begin_network_version": "0.1.0.dev0",
+  "cases": [
+    {
+      "expected": true,
+      "helper": null,
+      "id": "threshold_equal",
+      "owner": true,
+      "requester": true
+    },
+    {
+      "expected": true,
+      "helper": null,
+      "id": "threshold_above_one_coordinate",
+      "owner": true,
+      "requester": true
+    },
+    {
+      "expected": false,
+      "helper": null,
+      "id": "threshold_below_one_coordinate",
+      "owner": false,
+      "requester": false
+    },
+    {
+      "expected": false,
+      "helper": null,
+      "id": "wrong_role",
+      "owner": false,
+      "requester": false
+    },
+    {
+      "expected": false,
+      "helper": null,
+      "id": "language_mismatch",
+      "owner": false,
+      "requester": false
+    },
+    {
+      "expected": false,
+      "helper": null,
+      "id": "owner_declines",
+      "owner": false,
+      "requester": false
+    },
+    {
+      "expected": false,
+      "helper": null,
+      "id": "budget_exceeded",
+      "owner": false,
+      "requester": false
+    },
+    {
+      "expected": false,
+      "helper": null,
+      "id": "requester_declines",
+      "owner": false,
+      "requester": false
+    },
+    {
+      "expected": false,
+      "helper": null,
+      "id": "out_of_range",
+      "owner": false,
+      "requester": false
+    },
+    {
+      "expected": false,
+      "helper": null,
+      "id": "negative_similarity",
+      "owner": false,
+      "requester": false
+    }
+  ],
+  "consent_verifier_sha256": "1e6b438b86efdefe2dc1c528effc1c68773b5bf23827517f99692a3fc7190037",
+  "cryptography_version": "46.0.7",
+  "experiment": "mpyc-signed-consent-boolean-v2",
+  "parties": [
+    {
+      "consent_signers": 3,
+      "elapsed_seconds": 4.3763320840662345,
+      "input_file": "input.json",
+      "mpyc": "0.11",
+      "outcomes": [
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "party": 0,
+      "pid": 43035,
+      "private_rows": 10,
+      "protocol_bytes_sent_before_shutdown": 9098640,
+      "session_digest": "0f8efa9ecb325066c7b213b363092d726a8969ba4fda2e52a59b705dae161a13",
+      "threshold_corrupt": 1,
+      "tls": false
+    },
+    {
+      "consent_signers": 3,
+      "elapsed_seconds": 4.376399499946274,
+      "input_file": "input.json",
+      "mpyc": "0.11",
+      "outcomes": [
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "party": 1,
+      "pid": 43036,
+      "private_rows": 10,
+      "protocol_bytes_sent_before_shutdown": 9098420,
+      "session_digest": "0f8efa9ecb325066c7b213b363092d726a8969ba4fda2e52a59b705dae161a13",
+      "threshold_corrupt": 1,
+      "tls": false
+    },
+    {
+      "consent_signers": 3,
+      "elapsed_seconds": 4.376207874971442,
+      "input_file": "input.json",
+      "mpyc": "0.11",
+      "outcomes": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "party": 2,
+      "pid": 43037,
+      "private_rows": 0,
+      "protocol_bytes_sent_before_shutdown": 9078400,
+      "session_digest": "0f8efa9ecb325066c7b213b363092d726a8969ba4fda2e52a59b705dae161a13",
+      "threshold_corrupt": 1,
+      "tls": false
+    }
+  ],
+  "party_source_sha256": "531e73140c00bddada0b2cc74eecb2a9a9c0b36b3257c64eaf48c7937206a089",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "3.12.13",
+  "scope": "passive honest-majority experiment; same-host controller knows synthetic fixtures; no OS isolation",
+  "session_digest": "0f8efa9ecb325066c7b213b363092d726a8969ba4fda2e52a59b705dae161a13",
+  "session_source_sha256": "c5091996d032141d811ec43f593145cf5914aedd89eea0ab35036dfb52fe79a9",
+  "signed_participant_consents": 3,
+  "transport": "loopback TCP without TLS",
+  "wall_seconds": 4.624733666074462
+}

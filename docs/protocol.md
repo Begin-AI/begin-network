@@ -1,6 +1,6 @@
 # Begin protocol — draft 0.1
 
-Status: proposed contract, not an implemented secure protocol. Normative words describe target requirements. Index validation, the experimental signing profile, direct grants, sealed content, local mailboxes, and synthetic matching are executable. Full protocol enforcement and private semantic discovery remain incomplete.
+Status: proposed contract, not an implemented secure protocol. Normative words describe target requirements. Index validation, the experimental signing profile, direct grants, sealed content, local mailboxes, and synthetic matching are executable. Delegation, single-owner budgets, signed relay routing, owner-local encrypted queries and editable intention contracts now have experiments. Full protocol enforcement and private semantic discovery remain incomplete.
 
 ## Design authority and decentralization
 
@@ -32,7 +32,7 @@ The experimental profile uses compact JWS/Ed25519 with exact transmitted bytes a
 
 ## Authorization target
 
-Grants bind issuer, subject, audience, purpose, resources/actions, limits, validity, revocation source, and delegation depth. Child grants can only narrow scope. A match or valid signature alone MUST NOT release a key. Key release requires both matching and applicable authorization. Revocation stops future access according to a declared freshness bound; it cannot erase information already learned. Budget consumption needs atomic accounting, not a numeric field alone.
+Grants bind issuer, subject, audience, purpose, resources/actions, limits, validity, revocation source, and delegation depth. Child grants can only narrow scope. A match or valid signature alone MUST NOT release a key. Key release requires both matching and applicable authorization. Revocation stops future access according to a declared freshness bound; it cannot erase information already learned. The opt-in `begin-delegation-v1` profile adds atomic single-owner accounting and fresh signed revocation snapshots; see `permissions.md`. This is not distributed settlement or external sandboxing.
 
 ## Discovery target
 

@@ -40,7 +40,13 @@
           "status",
           "purpose",
           "privacy",
-          "implemented"
+          "implemented",
+          "method_version",
+          "model",
+          "dimensions",
+          "normalization",
+          "availability",
+          "implementation"
         ],
         "properties": {
           "id": {
@@ -67,6 +73,45 @@
           },
           "implemented": {
             "type": "boolean"
+          },
+          "method_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "model": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "dimensions": {
+            "oneOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 65536
+              },
+              {
+                "const": "dynamic"
+              }
+            ]
+          },
+          "normalization": {
+            "enum": [
+              "binary-cosine",
+              "l2",
+              "per-session"
+            ]
+          },
+          "availability": {
+            "enum": [
+              "runtime",
+              "experiment"
+            ]
+          },
+          "implementation": {
+            "type": "string",
+            "pattern": "^(src|experiments)/[A-Za-z0-9_./-]+\\.py$"
           }
         }
       }

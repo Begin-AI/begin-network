@@ -8,7 +8,9 @@ Any participant may initiate. Every participant chooses. Authority stays bounded
 
 ## Status
 
-Experimental protocol/runtime under private development. Implemented: local Ed25519 signing and envelope checks, direct scoped grants, receiver-bound sealed content, durable local mailboxes, public-index validation, and two synthetic matching baselines. Python/Node crypto interoperability and an independent fresh-install agent trial are recorded in docs. These do not establish a secure live network: private semantic discovery, complete delegation/revocation, multi-node routing, cumulative budgets, and real embedding quality remain unfinished. No P1–E4 gate is claimed fully passing. Repository remains private until explicitly approved for publication.
+Experimental protocol/runtime under private development. Implemented: Ed25519 envelopes, direct and attenuated delegated grants, persistent atomic resource accounting, receiver-bound sealed content, owner-local encrypted-query matching, editable intention contracts, durable mailboxes, signed routing and public-index validation. Independent agent installation, Python/Node signature interoperability, three-process coordinator routing/failover and a pretrained embedding benchmark have recorded evidence.
+
+The owner-local path reveals the authorized query to the counterpart and is **not full private semantic discovery**. The learned embedding benchmark still falsely matches negation, refusal and aspiration-as-capability. Complete key release, adaptive-probing defenses, cross-host secure transport, recovery semantics and publication licensing remain unfinished. No P1–E4 gate is claimed fully passed. This repository remains private.
 
 ## Run
 
@@ -30,6 +32,12 @@ The example index contains methods and schemas, with **zero operating nodes**. I
 - [Index schema](schemas/discovery-index.schema.json)
 - [Signing profile](docs/signing-profile.md)
 - [Matching experiments](docs/matching.md)
+- [Delegation and budgets](docs/permissions.md)
+- [Signed coordinator routing](docs/routing.md)
+- [Editable intentions](docs/intentions.md)
+- [Pretrained embedding results](docs/embedding-evaluation.md)
+- [Owner-local encrypted discovery](docs/local-discovery.md)
+- [Private discovery experiments](docs/private-discovery-experiment.md)
 - [Mailbox coordination](docs/coordination.md)
 - [Threat model](docs/threat-model.md)
 - [Completion audit](docs/completion-audit.md)

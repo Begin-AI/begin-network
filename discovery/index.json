@@ -3,15 +3,74 @@
   "generated_at": "2026-10-14T00:00:00Z",
   "status": "experimental",
   "schemas": [
-    "schemas/discovery-index.schema.json"
+    "schemas/discovery-index.schema.json",
+    "schemas/envelope-payload.schema.json"
   ],
   "methods": [
     {
-      "id": "begin/complementary-fit/v0",
+      "id": "begin/lexical-v1",
       "status": "experimental",
-      "purpose": "Synthetic evaluation of complementary roles and hard constraints across mirror, window, and social intentions.",
+      "purpose": "Plaintext lexical relevance baseline; role and constraints are separate gates.",
       "privacy": "synthetic-only",
-      "implemented": true
+      "implemented": true,
+      "method_version": "1",
+      "model": "synthetic-v1",
+      "dimensions": "dynamic",
+      "normalization": "binary-cosine",
+      "availability": "runtime",
+      "implementation": "src/begin_network/matching.py"
+    },
+    {
+      "id": "begin/concept-v1",
+      "status": "experimental",
+      "purpose": "Plaintext hand-curated concept baseline; documented negation and topic-stuffing failures.",
+      "privacy": "synthetic-only",
+      "implemented": true,
+      "method_version": "1",
+      "model": "synthetic-v1",
+      "dimensions": "dynamic",
+      "normalization": "binary-cosine",
+      "availability": "runtime",
+      "implementation": "src/begin_network/matching.py"
+    },
+    {
+      "id": "begin/owner-local-v1",
+      "status": "experimental",
+      "purpose": "Encrypted query delivered to an explicitly authorized counterpart for local comparison; not privacy against that counterpart.",
+      "privacy": "synthetic-only",
+      "implemented": true,
+      "method_version": "1",
+      "model": "per-session-pinned-model",
+      "dimensions": "dynamic",
+      "normalization": "l2",
+      "availability": "runtime",
+      "implementation": "src/begin_network/local_discovery.py"
+    },
+    {
+      "id": "begin/minilm-evaluation-v1",
+      "status": "experimental",
+      "purpose": "Measured synthetic semantic benchmark; cannot establish willingness, capability or permission.",
+      "privacy": "synthetic-only",
+      "implemented": true,
+      "method_version": "1",
+      "model": "sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "dimensions": 384,
+      "normalization": "l2",
+      "availability": "experiment",
+      "implementation": "experiments/embeddings/run.py"
+    },
+    {
+      "id": "begin/mpyc-boolean-v1",
+      "status": "experimental",
+      "purpose": "Three-party synthetic private predicate with unanimous signed session consent; passive honest-majority only, not complete private discovery.",
+      "privacy": "synthetic-only",
+      "implemented": true,
+      "method_version": "1",
+      "model": "synthetic-quantized-mirror-window-social-v1",
+      "dimensions": 96,
+      "normalization": "per-session",
+      "availability": "experiment",
+      "implementation": "experiments/mpc/party.py"
     }
   ],
   "nodes": []

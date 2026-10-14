@@ -1,0 +1,608 @@
+{
+  "corpus_sha256": "b91f96f6bcf27f71e34e99c9e91440996b167f67804cb99971242fc9c0fbf6d8",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "model_files_sha256": {
+    "model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+    "tokenizer_config.json": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+    "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+    "config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+    "config_sentence_transformers.json": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+    "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+    "sentence_bert_config.json": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+    "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+    "data_config.json": "32edcb108fc2516b920734a862ae0692bcae1c5d45d5f8d972cb0d53434a4c54",
+    "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+    "1_Pooling/config.json": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23"
+  },
+  "dimension": 384,
+  "normalization": "l2",
+  "device": "cpu",
+  "python": "3.12.13 (main, Mar  3 2026, 15:35:03) [Clang 21.1.4 ]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "thresholds": {
+    "lexical-v1": 0.3,
+    "concept-v1": 0.3,
+    "all-MiniLM-L6-v2": 0.5
+  },
+  "dependencies": {
+    "begin-network": "0.1.0.dev0",
+    "shellingham": "1.5.4",
+    "narwhals": "2.27.1",
+    "scikit-learn": "1.9.1",
+    "cloudpickle": "3.1.2",
+    "sentence-transformers": "6.1.0",
+    "click": "8.5.0",
+    "torch": "2.14.1",
+    "packaging": "26.3",
+    "networkx": "3.7",
+    "joblib": "1.6.0",
+    "tokenizers": "0.23.3",
+    "Pygments": "2.21.0",
+    "rich": "15.0.0",
+    "httpcore": "1.0.9",
+    "numpy": "2.5.4",
+    "sympy": "1.14.0",
+    "hf-xet": "1.7.0",
+    "safetensors": "0.8.0",
+    "tqdm": "4.70.1",
+    "setuptools": "84.0.0",
+    "h11": "0.16.0",
+    "mdurl": "0.1.2",
+    "mpmath": "1.3.0",
+    "PyYAML": "6.0.3",
+    "fsspec": "2026.9.0",
+    "transformers": "5.19.0",
+    "filelock": "4.1.1",
+    "certifi": "2026.7.22",
+    "typer": "0.27.3",
+    "Jinja2": "3.1.6",
+    "regex": "2026.9.29",
+    "markdown-it-py": "4.2.0",
+    "annotated-doc": "0.0.5",
+    "threadpoolctl": "3.7.0",
+    "httpx": "0.28.1",
+    "typing_extensions": "4.16.0",
+    "MarkupSafe": "3.0.4",
+    "anyio": "4.15.1",
+    "scipy": "1.18.1",
+    "huggingface_hub": "1.33.0",
+    "idna": "3.20"
+  },
+  "results": {
+    "lexical-v1": {
+      "counts": {
+        "tp": 3,
+        "fp": 6,
+        "tn": 8,
+        "fn": 7
+      },
+      "cases": [
+        {
+          "id": "guitar-paraphrase",
+          "score": 0.50709255283711,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "plants-paraphrase",
+          "score": 0.15811388300841897,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": true
+        },
+        {
+          "id": "python-paraphrase",
+          "score": 0.18257418583505536,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": true
+        },
+        {
+          "id": "language-learning",
+          "score": 0.4,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "music-social",
+          "score": 0.16666666666666666,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": true
+        },
+        {
+          "id": "mirror-reflection",
+          "score": 0.3380617018914066,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "english-synonym",
+          "score": 0.0,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": true
+        },
+        {
+          "id": "food-synonym",
+          "score": 0.0,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": true
+        },
+        {
+          "id": "negated-skill",
+          "score": 0.4,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": false
+        },
+        {
+          "id": "negated-willingness",
+          "score": 0.5962847939999439,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": false
+        },
+        {
+          "id": "past-vs-future",
+          "score": 0.4743416490252569,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": false
+        },
+        {
+          "id": "aspiration-not-capability",
+          "score": 0.5393598899705937,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": false
+        },
+        {
+          "id": "unrelated",
+          "score": 0.22360679774997896,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "unrelated-familiar-words",
+          "score": 0.4,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": false
+        },
+        {
+          "id": "same-role",
+          "score": 0,
+          "gate": "role",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "declined",
+          "score": 0,
+          "gate": "declined",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "wrong-location",
+          "score": 0,
+          "gate": "location",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "wrong-purpose",
+          "score": 0,
+          "gate": "purpose",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "wrong-time",
+          "score": 0.5163977794943222,
+          "gate": "timing",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "language-constraint",
+          "score": 0,
+          "gate": "language",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "spanish-pair",
+          "score": 0.23570226039551587,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": true
+        },
+        {
+          "id": "french-pair",
+          "score": 0.29814239699997197,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": true
+        },
+        {
+          "id": "topic-stuffing",
+          "score": 0.31622776601683794,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": false
+        },
+        {
+          "id": "fact-not-voluntary-offer",
+          "score": 0,
+          "gate": "role",
+          "predicted_match": false,
+          "expected_match": false
+        }
+      ]
+    },
+    "concept-v1": {
+      "counts": {
+        "tp": 5,
+        "fp": 5,
+        "tn": 9,
+        "fn": 5
+      },
+      "cases": [
+        {
+          "id": "guitar-paraphrase",
+          "score": 0.50709255283711,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "plants-paraphrase",
+          "score": 0.15811388300841897,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": true
+        },
+        {
+          "id": "python-paraphrase",
+          "score": 0.20412414523193154,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": true
+        },
+        {
+          "id": "language-learning",
+          "score": 0.4,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "music-social",
+          "score": 0.16666666666666666,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": true
+        },
+        {
+          "id": "mirror-reflection",
+          "score": 0.3380617018914066,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "english-synonym",
+          "score": 1.0,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "food-synonym",
+          "score": 0.7071067811865475,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "negated-skill",
+          "score": 0.4,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": false
+        },
+        {
+          "id": "negated-willingness",
+          "score": 0.5303300858899106,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": false
+        },
+        {
+          "id": "past-vs-future",
+          "score": 0.4743416490252569,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": false
+        },
+        {
+          "id": "aspiration-not-capability",
+          "score": 0.5393598899705937,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": false
+        },
+        {
+          "id": "unrelated",
+          "score": 0.22360679774997896,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "unrelated-familiar-words",
+          "score": 0.4,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": false
+        },
+        {
+          "id": "same-role",
+          "score": 0,
+          "gate": "role",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "declined",
+          "score": 0,
+          "gate": "declined",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "wrong-location",
+          "score": 0,
+          "gate": "location",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "wrong-purpose",
+          "score": 0,
+          "gate": "purpose",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "wrong-time",
+          "score": 0.5163977794943222,
+          "gate": "timing",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "language-constraint",
+          "score": 0,
+          "gate": "language",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "spanish-pair",
+          "score": 0.23570226039551587,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": true
+        },
+        {
+          "id": "french-pair",
+          "score": 0.29814239699997197,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": true
+        },
+        {
+          "id": "topic-stuffing",
+          "score": 0.20412414523193154,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "fact-not-voluntary-offer",
+          "score": 0,
+          "gate": "role",
+          "predicted_match": false,
+          "expected_match": false
+        }
+      ]
+    },
+    "all-MiniLM-L6-v2": {
+      "counts": {
+        "tp": 9,
+        "fp": 5,
+        "tn": 9,
+        "fn": 1
+      },
+      "cases": [
+        {
+          "id": "guitar-paraphrase",
+          "score": 0.7862322330474854,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "plants-paraphrase",
+          "score": 0.38644158840179443,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": true
+        },
+        {
+          "id": "python-paraphrase",
+          "score": 0.6316641569137573,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "language-learning",
+          "score": 0.6380859613418579,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "music-social",
+          "score": 0.7519181370735168,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "mirror-reflection",
+          "score": 0.6313984394073486,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "english-synonym",
+          "score": 0.6322222948074341,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "food-synonym",
+          "score": 0.6074949502944946,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "negated-skill",
+          "score": 0.7454476356506348,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": false
+        },
+        {
+          "id": "negated-willingness",
+          "score": 0.8268407583236694,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": false
+        },
+        {
+          "id": "past-vs-future",
+          "score": 0.6748703122138977,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": false
+        },
+        {
+          "id": "aspiration-not-capability",
+          "score": 0.7515380382537842,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": false
+        },
+        {
+          "id": "unrelated",
+          "score": 0.19070599973201752,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "unrelated-familiar-words",
+          "score": 0.5163097381591797,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": false
+        },
+        {
+          "id": "same-role",
+          "score": 1.0,
+          "gate": "role",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "declined",
+          "score": 0.742849588394165,
+          "gate": "declined",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "wrong-location",
+          "score": 0.742849588394165,
+          "gate": "location",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "wrong-purpose",
+          "score": 0.742849588394165,
+          "gate": "purpose",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "wrong-time",
+          "score": 0.742849588394165,
+          "gate": "timing",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "language-constraint",
+          "score": 0.742849588394165,
+          "gate": "language",
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "spanish-pair",
+          "score": 0.6304446458816528,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "french-pair",
+          "score": 0.676683783531189,
+          "gate": null,
+          "predicted_match": true,
+          "expected_match": true
+        },
+        {
+          "id": "topic-stuffing",
+          "score": 0.31521424651145935,
+          "gate": null,
+          "predicted_match": false,
+          "expected_match": false
+        },
+        {
+          "id": "fact-not-voluntary-offer",
+          "score": 0.7576783299446106,
+          "gate": "role",
+          "predicted_match": false,
+          "expected_match": false
+        }
+      ]
+    }
+  }
+}

@@ -1,4 +1,4 @@
-name: Validate seed
+name: Validate protocol experiments
 on: [push, pull_request]
 permissions:
   contents: read
@@ -16,3 +16,20 @@ jobs:
       - run: python -m pip install -e '.[dev]'
       - run: python -m unittest discover -s tests -v
       - run: begin-network validate-index discovery/index.json
+
+  mpc-experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install .
+      - run: python -m pip install --require-hashes -r experiments/mpc/requirements.txt
+      - run: python -m unittest discover -s experiments/mpc -p test_experiment.py -v
+      - run: python experiments/mpc/run.py > mpc-results.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mpc-experiment-evidence
+          path: mpc-results.json

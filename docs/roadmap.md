@@ -1,10 +1,11 @@
-# Implementation roadmap
+# Implementation roadmap and current evidence
 
-1. Seed (implemented): founding brief, protocol draft, public-index schema and validator, synthetic index, CI. No privacy claims.
-2. Experimental signing profile, threat model, envelope verifier, direct grants, persistent replay store, sealed content and adversarial tests implemented. Next: chain attenuation, fresh revocation distribution, atomic budgets, key-release service and review.
-3. Two synthetic baselines and a fixed 13-case corpus implemented, including documented failures. Next: build held-out complementary-fit corpus and versioned method interfaces; benchmark private-matching candidates separately from utility baselines.
-4. Implement independent discovery/mailbox nodes and agent CLI adapter. Prove offline retrieval, retries, deduplication, quotas, and failover.
-5. Demonstrate a synthetic help-seeker/helper connection with disclosure after authorization; include decline, no-match, revoked and failed outcomes. A plaintext demo cannot satisfy P2.
-6. Independent implementation interoperability and published P1–E4 evidence; then opt-in personal-data pilots.
+1. Seed: protocol draft, founding brief, public method index/schema, agent manifest and CI implemented.
+2. Signatures: Ed25519 compact JWS, strict envelope checks, replay state, Python/Node interoperability and fresh agent install demonstrated. Full independent verifier/policy interoperability and review remain.
+3. Permission: direct grants plus opt-in attenuated chains, atomic single-owner unit reservations, signed fresh revocations and immutable ledger policy demonstrated. External resource enforcement, distributed settlement, delayed-work revalidation and recovery remain.
+4. Coordination: durable mailbox and signed multi-hop routing demonstrated. Three OS processes route over bounded loopback HTTP with offline-peer failover. Secure public transport, operational recovery, signed outcome receipts, candidate enumeration and real agent-host adapters remain.
+5. Intentions: editable facts/aspirations/inferences, purpose-specific records, revision-bound vector compatibility, consent and timing demonstrated. Pretrained MiniLM benchmark improves paraphrase recall but retains five false positives among 24 cases. Larger independent labels, calibration, multilingual coverage and robust information retention remain.
+6. Privacy experiments: owner-local encrypted queries keep vectors from relays while deliberately disclosing them to authorized counterparties. Three-party MPyC predicate experiment opens only a boolean to two parties under passive honest-majority assumptions. Neither passes full P2. Malicious-security comparisons, authenticated independent hosts, conditional key release, adaptive-probing defenses, hidden candidate selection and complete leakage evaluation remain.
+7. Release: reproduce the installed runtime from a pinned remote repository archive, tie evidence to commit/artifact hashes, exercise useful bounded goals end to end, complete conformance and security review, choose code/patent permissions, scan artifacts and prepare release. Keep repository private pending founder publication decision.
 
-Legacy reference: historical coordinator for execution cycles; scientist-lib for local encoders and remote worker concepts; ml-api for timeline/interest features. No legacy source has been ported. Preserve new purpose-specific representations rather than deriving authority from behavioral inference. Optional computation/economy modules follow core discovery and permission work.
+Return to the patent's Figures 1–9 when design is uncertain. New mechanisms must preserve independent coordinators, participant choice and local control. Existing private Begin code is reference material and has not been copied into this repository.

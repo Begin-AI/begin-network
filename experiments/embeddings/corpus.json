@@ -1,0 +1,634 @@
+{
+  "version": "synthetic-goal-pairs-v1",
+  "thresholds": {
+    "lexical-v1": 0.3,
+    "concept-v1": 0.3,
+    "all-MiniLM-L6-v2": 0.5
+  },
+  "cases": [
+    {
+      "id": "guitar-paraphrase",
+      "query": {
+        "text": "I want to learn guitar",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I teach beginners to play acoustic guitar",
+        "purpose": "window",
+        "role": "offer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": true
+    },
+    {
+      "id": "plants-paraphrase",
+      "query": {
+        "text": "I want to grow vegetables",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I coach people on starting a kitchen garden",
+        "purpose": "window",
+        "role": "offer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": true
+    },
+    {
+      "id": "python-paraphrase",
+      "query": {
+        "text": "Help me debug Python software",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I fix defects in Python programs",
+        "purpose": "window",
+        "role": "offer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": true
+    },
+    {
+      "id": "language-learning",
+      "query": {
+        "text": "I hope to speak French",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I offer French conversation lessons",
+        "purpose": "window",
+        "role": "offer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": true
+    },
+    {
+      "id": "music-social",
+      "query": {
+        "text": "Find musicians to play jazz together",
+        "purpose": "social",
+        "role": "peer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "Looking for a jazz jam partner",
+        "purpose": "social",
+        "role": "peer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": true
+    },
+    {
+      "id": "mirror-reflection",
+      "query": {
+        "text": "I enjoy collaborative problem solving",
+        "purpose": "mirror",
+        "role": "peer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I like solving challenges with a team",
+        "purpose": "mirror",
+        "role": "peer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": true
+    },
+    {
+      "id": "english-synonym",
+      "query": {
+        "text": "gardening",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "horticulture",
+        "purpose": "window",
+        "role": "offer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": true
+    },
+    {
+      "id": "food-synonym",
+      "query": {
+        "text": "cooking",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "preparing meals",
+        "purpose": "window",
+        "role": "offer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": true
+    },
+    {
+      "id": "negated-skill",
+      "query": {
+        "text": "I want to learn guitar",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I do not teach guitar",
+        "purpose": "window",
+        "role": "offer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": false
+    },
+    {
+      "id": "negated-willingness",
+      "query": {
+        "text": "Help me debug Python software",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I know Python but refuse to help debug software",
+        "purpose": "window",
+        "role": "offer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": false
+    },
+    {
+      "id": "past-vs-future",
+      "query": {
+        "text": "I want to learn guitar",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I used to teach guitar but no longer teach",
+        "purpose": "window",
+        "role": "offer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": false
+    },
+    {
+      "id": "aspiration-not-capability",
+      "query": {
+        "text": "I want to learn guitar",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I want to become a guitar teacher but cannot play yet",
+        "purpose": "window",
+        "role": "offer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "aspiration"
+      },
+      "expected_match": false
+    },
+    {
+      "id": "unrelated",
+      "query": {
+        "text": "I want to learn guitar",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I repair kitchen plumbing",
+        "purpose": "window",
+        "role": "offer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": false
+    },
+    {
+      "id": "unrelated-familiar-words",
+      "query": {
+        "text": "I want to grow vegetables",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I sell photographs of vegetables",
+        "purpose": "window",
+        "role": "offer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": false
+    },
+    {
+      "id": "same-role",
+      "query": {
+        "text": "I want to learn guitar",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I want to learn guitar",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": false
+    },
+    {
+      "id": "declined",
+      "query": {
+        "text": "I want to learn guitar",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I teach guitar",
+        "purpose": "window",
+        "role": "offer",
+        "language": "en",
+        "location": "remote",
+        "consent": false,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": false
+    },
+    {
+      "id": "wrong-location",
+      "query": {
+        "text": "I want to learn guitar",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "halifax",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I teach guitar",
+        "purpose": "window",
+        "role": "offer",
+        "language": "en",
+        "location": "toronto",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": false
+    },
+    {
+      "id": "wrong-purpose",
+      "query": {
+        "text": "I want to learn guitar",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I teach guitar",
+        "purpose": "social",
+        "role": "offer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": false
+    },
+    {
+      "id": "wrong-time",
+      "query": {
+        "text": "I want to learn guitar",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I teach guitar",
+        "purpose": "window",
+        "role": "offer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 101,
+        "end": 200,
+        "category": "fact"
+      },
+      "expected_match": false
+    },
+    {
+      "id": "language-constraint",
+      "query": {
+        "text": "I want to learn guitar",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I teach guitar",
+        "purpose": "window",
+        "role": "offer",
+        "language": "fr",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": false
+    },
+    {
+      "id": "spanish-pair",
+      "query": {
+        "text": "Quiero aprender guitarra",
+        "purpose": "window",
+        "role": "seek",
+        "language": "es",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "Doy clases de guitarra para principiantes",
+        "purpose": "window",
+        "role": "offer",
+        "language": "es",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": true
+    },
+    {
+      "id": "french-pair",
+      "query": {
+        "text": "Je veux apprendre la guitare",
+        "purpose": "window",
+        "role": "seek",
+        "language": "fr",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "Je donne des cours de guitare aux débutants",
+        "purpose": "window",
+        "role": "offer",
+        "language": "fr",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": true
+    },
+    {
+      "id": "topic-stuffing",
+      "query": {
+        "text": "Help me debug Python software",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "Python software garden food music guitar jazz French",
+        "purpose": "window",
+        "role": "offer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": false
+    },
+    {
+      "id": "fact-not-voluntary-offer",
+      "query": {
+        "text": "I want to learn guitar",
+        "purpose": "window",
+        "role": "seek",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 10,
+        "end": 100,
+        "category": "aspiration"
+      },
+      "candidate": {
+        "text": "I am a guitar teacher",
+        "purpose": "window",
+        "role": "peer",
+        "language": "en",
+        "location": "remote",
+        "consent": true,
+        "start": 20,
+        "end": 90,
+        "category": "fact"
+      },
+      "expected_match": false
+    }
+  ]
+}

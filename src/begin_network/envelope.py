@@ -99,6 +99,8 @@ class ReplayStore:
 
 
 def verify(token, trusted_keys, audience, now=None, replay=None, revoked_keys=(), max_lifetime=3600):
+    if not isinstance(audience, str) or not audience:
+        raise Rejected('invalid expected audience')
     if not isinstance(token, str) or len(token) > MAX_MESSAGE_BYTES:
         raise Rejected('invalid message size/type')
     parts = token.split('.')

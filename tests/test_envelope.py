@@ -22,6 +22,17 @@ class EnvelopeTests(unittest.TestCase):
         for raw in (b'{"n":1e999}', '{"id":1}'.encode('utf-16'), ('[' * 1100 + '0' + ']' * 1100).encode()):
             with self.assertRaises(Rejected): strict_json(raw)
 
+    def test_published_schema_accepts_wire_and_rejects_unknown_field(self):
+        from pathlib import Path
+        from jsonschema import Draft202012Validator, ValidationError
+        root = Path(__file__).resolve().parents[1]
+        schema = json.loads((root/'schemas/envelope-payload.schema.json').read_text())
+        validator = Draft202012Validator(schema)
+        validator.validate(self.check())
+        with self.assertRaises(ValidationError): validator.validate(dict(self.payload, extra=True))
+        self.assertEqual((root/'schemas/envelope-payload.schema.json').read_bytes(),
+                         (root/'src/begin_network/schemas/envelope-payload.schema.json').read_bytes())
+
     def test_round_trip(self):
         self.assertEqual(self.check(), self.payload)
 

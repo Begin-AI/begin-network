@@ -40,3 +40,23 @@ P1–E4 remain individually gated by `docs/release-gates.md`; publishing an expe
 Implemented experiments now supersede the baseline-only implementation state above; the full objective remains unfinished. The dedicated `.venv` has declared dependencies and all current tests pass. Independent noneditable install is documented in `agent-install-evidence.md`. Node/Python interoperability is exercised by `test_interop.py`; it proves crypto wire compatibility, not full independent policy implementation. Direct grants, persistent replay, recipient-bound experimental encryption and mailbox durability/concurrency have dedicated adversarial tests. Sealed ciphertext substitution found in review was repaired by signing the box digest. `signing-review.md` tracks findings.
 
 Matching evidence: two plaintext synthetic baselines on 13 fixed cases. Both retain two false positives; vocabulary generalization, multilingual semantic quality and P2 remain unproved. No live network, complete protocol state machine, cumulative budgets, grant chains, secure conditional key-release service, agent-host adapters or complete multi-node routing exists. Licensing remains unresolved. The milestone must not be described as publishable completion.
+
+## Delegation, routing and representation milestone (2026-10-14)
+
+Current evidence extends the previous snapshot: signed grant chains attenuate scope/depth/lifetime; single-owner SQLite accounting prevents sibling and concurrent overspend and survives restart; fresh signed revocation snapshots and immutable owner policy are checked. `test_permissions.py` records adversarial and migration regressions. `permissions.md` states replica/crash/stop-work limits.
+
+`test_routing.py` verifies every signed hop and original binding. `test_coordinator_processes.py` and `examples/coordinator_process_demo.py` demonstrate three independent OS processes over bounded loopback HTTP, signed request routing, offline-peer failover and negative cases. No secure cross-host transport, signed execution receipt or eventual-delivery guarantee is implied.
+
+`test_intentions.py` covers separate facts/aspirations/inferences, consent/disclosure boundaries, multi-purpose records, revision invalidation, retire/expiry, compatibility and timing. The 24-case frozen pretrained benchmark (`embedding-evaluation.md`, `experiments/embeddings/results.json`) measures actual model behavior with pinned weights: MiniLM improves recall but retains five false positives, including negation and aspiration/capability confusion. Core CI validates artifact provenance/counts; rerunning inference is an isolated optional experiment.
+
+`test_local_discovery.py` integrates signed matching permission, encrypted query, recipient-local comparison and offline mailbox delivery. Relays lack the decryption key; the authorized counterpart learns the query. The full description stays undisclosed. This is a bounded experiment with known candidate bootstrap and no full P2 claim. Complete peer discovery, cryptographic conditional key release, multi-owner search, stronger adversary treatment, real host adapters and release licensing remain unverified. Goal remains active.
+
+## Additional private-predicate evidence
+
+`experiments/mpc` contains a separately installed MPyC 0.11 experiment: three independently launched party processes, split synthetic private input files, secret vector/constraint predicate and boolean output limited to requester/owner. Ten predicates matched the plaintext baseline; helper receives no opened output. `docs/mpc-evaluation.md` states passive honest-majority, same-host/no-TLS limits. This is actual cryptographic computation evidence, not a learned encoder or full private discovery claim. Session authentication work is tracked separately as it lands.
+
+### Signed MPC and adversarial repair evidence
+
+All three MPC parties now verify unanimous signatures binding the same circuit/preflight hashes, model, parameters, topology, receiver policy and expiry before connecting. Ten-case measured execution succeeds; twelve negative subprocess preflights reject changed code, missing signatures, validly signed mismatched consent and expiry. This is local pinned-key consent, not full resource authority or authenticated transport. CI runs this experiment separately and records a fresh report.
+
+Review also found and repaired NaN time acceptance, Boolean vector contracts, transit-peer path truncation/hop-limit reset, and replay admission after expensive query computation. The origin now signs ingress and hop budget; matching admission precedes decryption after scope/digest checks. Regression tests and `discovery-review.md` preserve findings and repair verification. Full release is still not established.
