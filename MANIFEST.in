@@ -1,6 +1,7 @@
-include AGENTS.md SECURITY.md LICENSE-DECISION.md requirements.lock
+include AGENTS.md SECURITY.md LICENSE-DECISION.md CONTRIBUTING.md agent-manifest.json requirements.lock
 recursive-include docs *.md *.json *.html
-recursive-include discovery *.json
+recursive-include discovery *.json *.md
 recursive-include schemas *.json
-recursive-include examples *.py
+recursive-include examples *.py *.json
 recursive-include experiments *.py *.json *.md *.txt *.lock
+recursive-include tests *.py *.mjs

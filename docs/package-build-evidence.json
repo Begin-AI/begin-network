@@ -1,15 +1,23 @@
 {
-  "scope": "Local experimental candidate build; not published or licensed; hashes identify this build only",
+  "scope": "Local experimental build after complete source-manifest repair; unpublished, unlicensed; hashes identify this build only",
   "artifacts": [
     {
       "file": "begin_network-0.1.0.dev0-py3-none-any.whl",
-      "sha256": "0ccbdea43e8f507e321b4b40eb3cb7bca65b32ac47e18c3ec180575d0badb32c",
+      "sha256": "894b5ebe30351990e0e6d38fbd43061ce349dbc3a46c42365647da13d508373b",
       "members": 23
     },
     {
       "file": "begin_network-0.1.0.dev0.tar.gz",
-      "sha256": "d2cbd4f1d435048c6d86ba49acbfbdcdd57e73d391cbd08eae90829243bcc0c2",
-      "members": 118
+      "sha256": "332601e35bf2f6356a756f376d7daf342a93998b04b1b667028869c602646d59",
+      "members": 129
     }
-  ]
+  ],
+  "unpacked_source_checks": {
+    "python": "3.12.13",
+    "core_tests": 121,
+    "result": "passed",
+    "capabilities": "passed",
+    "three_process_goal": "passed",
+    "processing": "installed wheel runtime, unpacked source fixtures"
+  }
 }

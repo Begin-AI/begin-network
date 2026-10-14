@@ -18,6 +18,29 @@ jobs:
       - run: python -m unittest discover -s tests -v
       - run: begin-network validate-index discovery/index.json
       - run: python examples/goal_exchange_demo.py
+      - run: python -m pip install build
+      - run: python -m build --outdir dist
+      - name: Test unpacked source release with installed runtime
+        run: |
+          python - <<'PYTHON'
+          import pathlib, subprocess, sys, tarfile, tempfile
+          archive = next(pathlib.Path('dist').glob('*.tar.gz'))
+          destination = pathlib.Path(tempfile.mkdtemp(prefix='begin-source-release-'))
+          with tarfile.open(archive) as source:
+              for member in source.getmembers():
+                  path = pathlib.PurePosixPath(member.name)
+                  assert not path.is_absolute() and '..' not in path.parts
+                  assert member.isfile() or member.isdir()
+              source.extractall(destination)
+          root = next(destination.iterdir())
+          for required in ['agent-manifest.json', 'CONTRIBUTING.md', 'discovery/README.md',
+                           'docs/founding-brief.html', 'tests/interop_node.mjs']:
+              assert (root / required).is_file(), required
+          subprocess.run([sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', '-q'],
+                         cwd=root, check=True, timeout=120)
+          subprocess.run([sys.executable, 'examples/goal_process_demo.py'],
+                         cwd=root, check=True, timeout=60)
+          PYTHON
 
   mpc-experiment:
     runs-on: ubuntu-latest

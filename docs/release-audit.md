@@ -67,3 +67,7 @@ The baseline audit above is historical. Subsequent work adds exact-byte signed i
 Gitleaks 8.30.1 scanned all six existing commits and the candidate staged changes with redaction. Three historical generic-key findings were independently verified as SHA256 values of pinned public MiniLM tokenizer files. `.gitleaksignore` permits only those exact historical fingerprints; rescans reported no remaining findings. This automated scope is evidence, not proof of absence of secrets or a legal review. Core dependency audit reports no known advisories in the updated lock.
 
 Licensing and patent grants remain undecided. Full private discovery, malicious-secure computation, independently administered transport and live personal-data safety remain unsupported. The repository stays private pending founder decisions.
+
+### Source-release repair
+
+Testing the built source archive exposed omitted files: the agent manifest, contribution/discovery documents, Node interoperability helper and matching JSON fixture were not all included by the original manifest. The manifest now includes them. An extracted repaired source archive, using a noneditable installed wheel on Python 3.12.13, passed all 121 tests, capability reporting and the actual three-process goal. CI now repeats the unpacked-source check to catch missing fixtures even when checkout tests pass. This is source-package completeness evidence, not bit-for-bit build reproducibility.
