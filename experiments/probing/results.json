@@ -1,0 +1,86 @@
+{
+  "scope": "synthetic known-owner 2D chosen-query experiment",
+  "mechanism": "actual signed encrypted receive_query API; direct per-request grant",
+  "rounds": 12,
+  "accepted_queries": 12,
+  "per_request_units": 1,
+  "grant_max_units": 1,
+  "grant_is_cumulative": false,
+  "assumptions": [
+    "known two-dimensional unit vector in first quadrant",
+    "stable owner vector and availability",
+    "known fixed cosine threshold 0.5",
+    "authorized requester may select arbitrary normalized query vectors"
+  ],
+  "synthetic_truth_angle": 0.37,
+  "recovered_interval": [
+    0.3696893698804395,
+    0.3700728650774109
+  ],
+  "estimated_angle": 0.36988111747892516,
+  "absolute_angle_error": 0.00011888252107483677,
+  "interval_width": 0.0003834951969713951,
+  "transcript": [
+    {
+      "probe": 0,
+      "angle": 1.832595714594046,
+      "matched": false
+    },
+    {
+      "probe": 1,
+      "angle": 1.4398966328953218,
+      "matched": false
+    },
+    {
+      "probe": 2,
+      "angle": 1.2435470920459597,
+      "matched": true
+    },
+    {
+      "probe": 3,
+      "angle": 1.3417218624706408,
+      "matched": true
+    },
+    {
+      "probe": 4,
+      "angle": 1.3908092476829812,
+      "matched": true
+    },
+    {
+      "probe": 5,
+      "angle": 1.4153529402891514,
+      "matched": true
+    },
+    {
+      "probe": 6,
+      "angle": 1.4276247865922367,
+      "matched": false
+    },
+    {
+      "probe": 7,
+      "angle": 1.4214888634406941,
+      "matched": false
+    },
+    {
+      "probe": 8,
+      "angle": 1.4184209018649228,
+      "matched": false
+    },
+    {
+      "probe": 9,
+      "angle": 1.4168869210770372,
+      "matched": true
+    },
+    {
+      "probe": 10,
+      "angle": 1.41765391147098,
+      "matched": false
+    },
+    {
+      "probe": 11,
+      "angle": 1.4172704162740084,
+      "matched": false
+    }
+  ],
+  "conclusion": "Boolean outcomes leak direction under repeated chosen queries; P2 not passed"
+}

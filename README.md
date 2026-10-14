@@ -58,6 +58,7 @@ The example index contains methods and schemas, with **zero operating nodes**. I
 - [Pretrained embedding results](docs/embedding-evaluation.md)
 - [Owner-local encrypted discovery](docs/local-discovery.md)
 - [Private discovery experiments](docs/private-discovery-experiment.md)
+- [Measured boolean probing leakage](docs/probing-evaluation.md)
 - [Mailbox coordination](docs/coordination.md)
 - [Threat model](docs/threat-model.md)
 - [Completion audit](docs/completion-audit.md)

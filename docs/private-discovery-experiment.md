@@ -1,6 +1,6 @@
 # Minimum private discovery experiment
 
-Status: proposed runnable experiment, not an implemented or approved private matcher. Only synthetic intentions may be used. This plan preserves the brief's sealed discovery and permission boundaries; it does not turn purpose-bound intentions into public vectors.
+Status: research plan with separate implemented owner-local, MPyC predicate and repeated-boolean probing experiments; not an approved private matcher. Only synthetic intentions may be used. See `local-discovery.md`, `mpc-evaluation.md` and `probing-evaluation.md` for actual measured mechanisms; the MASCOT/TenSEAL paths below remain proposals. This plan preserves the brief's sealed discovery and permission boundaries; it does not turn purpose-bound intentions into public vectors.
 
 ## Recommendation
 
