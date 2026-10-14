@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1-draft",
+  "generated_at": "2026-10-14T00:00:00Z",
+  "status": "experimental",
+  "schemas": [
+    "schemas/discovery-index.schema.json"
+  ],
+  "methods": [
+    {
+      "id": "begin/complementary-fit/v0",
+      "status": "proposed",
+      "purpose": "Synthetic evaluation of complementary roles and hard constraints across mirror, window, and social intentions.",
+      "privacy": "synthetic-only",
+      "implemented": false
+    }
+  ],
+  "nodes": []
+}

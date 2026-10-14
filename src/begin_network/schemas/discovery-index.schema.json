@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Begin public discovery index",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_version",
+    "generated_at",
+    "status",
+    "schemas",
+    "methods",
+    "nodes"
+  ],
+  "properties": {
+    "protocol_version": {
+      "const": "0.1-draft"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "const": "experimental"
+    },
+    "schemas": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^schemas/[a-z0-9.-]+\\.json$"
+      },
+      "uniqueItems": true
+    },
+    "methods": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "status",
+          "purpose",
+          "privacy",
+          "implemented"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9./-]{0,127}$"
+          },
+          "status": {
+            "enum": [
+              "proposed",
+              "experimental",
+              "evaluated"
+            ]
+          },
+          "purpose": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "privacy": {
+            "enum": [
+              "synthetic-only",
+              "specified-not-validated",
+              "evaluated-under-stated-assumptions"
+            ]
+          },
+          "implemented": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "endpoint",
+          "capabilities",
+          "expires_at",
+          "trust"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "endpoint": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "capabilities": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "discovery",
+                "mailbox",
+                "coordination"
+              ]
+            }
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "trust": {
+            "const": "unverified-advertisement"
+          }
+        }
+      }
+    }
+  }
+}

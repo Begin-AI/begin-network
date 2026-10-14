@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "begin-network"
+version = "0.1.0.dev0"
+description = "Experimental Begin protocol and public discovery index tools"
+requires-python = ">=3.9"
+dependencies = ["jsonschema[format-nongpl]>=4.18,<5"]
+
+[project.optional-dependencies]
+dev = []
+
+[project.scripts]
+begin-network = "begin_network.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+begin_network = ["schemas/*.json"]
