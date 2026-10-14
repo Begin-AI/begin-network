@@ -30,7 +30,7 @@ Run `.venv/bin/python -m unittest discover -s tests -p test_routing.py -v` from 
 
 `examples/coordinator_process_demo.py` also launches three separate Python processes, each with its own private key and SQLite replay file. The ingress first attempts an offline peer, then routes through the second process to the final process. The parent compares the returned original payload against its independently verified origin token. This response comparison is local test evidence; the HTTP response itself is not a signed task receipt and proves no execution.
 
-Run `PYTHONPATH=src .venv/bin/python examples/coordinator_process_demo.py`. The command prints the three distinct process IDs, verified synthetic original body, and offline-failover result. Temporary databases and keys are discarded after the subprocesses are terminated and reaped. Private worker configuration passes through a local pipe, not command-line arguments.
+After installing the runtime, run `.venv/bin/python examples/coordinator_process_demo.py`. Child processes use the same interpreter and inherit the caller environment; the demo does not inject a source-tree import path. The command prints the three distinct process IDs, verified synthetic original body, and offline-failover result. Temporary databases and keys are discarded after the subprocesses are terminated and reaped. Private worker configuration passes through a local pipe, not command-line arguments.
 
 Run `.venv/bin/python -m unittest discover -s tests -p test_coordinator_processes.py -v` for process-level tests of routing, actual offline-peer failover, signature-tampered origin rejection, unsigned-hop rejection, and clean subprocess shutdown. These augment the callable-transport tests with real OS processes and TCP boundaries.
 

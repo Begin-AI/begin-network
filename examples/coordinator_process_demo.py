@@ -136,7 +136,6 @@ class ProcessNetwork:
             'routes':{self.keys[d]['kid']:[self.keys[p]['kid'] for p in peers] for d,peers in routes.items()},
             'endpoints':endpoints}
         env = os.environ.copy()
-        env['PYTHONPATH'] = str(Path(__file__).resolve().parents[1] / 'src')
         child = subprocess.Popen([sys.executable, str(Path(__file__).resolve()), '--worker'],
             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, env=env)
         self.children.append(child)

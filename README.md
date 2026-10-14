@@ -26,6 +26,10 @@ The example index contains methods and schemas, with **zero operating nodes**. I
 
 ## Contents
 
+- [Charter](docs/charter.md)
+- [Activity definitions](docs/activity.md)
+- [Linux CI evidence](docs/ci-evidence.md)
+- [Remote agent trial](docs/remote-agent-evidence.md)
 - [Founding brief](docs/founding-brief.html)
 - [Protocol draft](docs/protocol.md)
 - [Publishable discovery index](discovery/README.md)
