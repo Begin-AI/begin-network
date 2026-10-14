@@ -1,0 +1,9 @@
+# Local runtime adapter
+
+An agent host with an approved local terminal can inspect the installed runtime using `begin-network capabilities`. This reports the installed package/Python/platform, protocol version, processing location and unsupported operations as JSON. It creates no key, downloads no model, contacts no service and grants no permission. A human's host must separately authorize installation and use. Mere presence in a chat app is insufficient.
+
+The CLI supplies key generation, signing, incoming envelope verification and public index structure validation. Python APIs supply explicit grants, discovery selection, bounded fixture execution, durable mailboxes and signed results. `examples/goal_process_demo.py` composes those APIs across three loopback OS processes. It runs one synthetic interval-overlap operation; it cannot run arbitrary received code or use personal calendars. Request and result encryption stays on those local processes. The optional pretrained benchmark downloads pinned weights separately and runs CPU inference locally. The optional MPC experiment exchanges shares among explicitly configured local parties.
+
+`verify` checks envelope authenticity only and reports `permission_checked: false`. Do not turn that into permission to execute. Bounded execution verifies the signed delegation chain, current revocation snapshot, audience, fixed purpose/action/resource and cumulative unit budget before decrypting input. A revocation prevents subsequent admission under the tested freshness policy; it cannot erase learned outputs or stop arbitrary external side effects.
+
+Fresh installation and independent agent trials are recorded separately. These trials involve separate agents and processes, but do not establish support for two independently administered agent products or secure multi-host deployment. That rollout gate remains unpassed. No MCP server, iPad-native runtime or public HTTP execution service is advertised.

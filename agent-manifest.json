@@ -18,7 +18,11 @@
     "editable-intention-contracts",
     "owner-local-encrypted-query-matching",
     "pretrained-embedding-evaluation",
-    "three-party-mpc-predicate-experiment"
+    "three-party-mpc-predicate-experiment",
+    "locally-pinned-signed-index-bootstrap",
+    "synthetic-bounded-fixture-execution",
+    "encrypted-signed-task-results",
+    "three-process-loopback-goal-exchange"
   ],
   "not_implemented": [
     "complete-private-candidate-discovery",

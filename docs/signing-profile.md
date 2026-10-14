@@ -12,6 +12,6 @@ Payload fields: `version`, `type` (request/response/grant/revocation), `sender`,
 
 `begin-network keygen key.json` creates a new private key file exclusively with mode 0600 on POSIX. It prints public information only. Do not commit generated keys. `begin-network sign --key key.json --payload payload.json` emits a compact token. `begin-network verify --keys trusted.json --token token.txt --audience receiver --replay-db seen.sqlite` performs envelope admission and prints named checks. Repeating admission fails as a replay. Key custody on non-POSIX platforms needs platform-specific protections.
 
-Future work: delegation attenuation, signed revocation distribution and freshness, key rotation proof and policy, request/ciphertext/key-release binding, independent implementation coverage, and an externally reviewed cryptographic profile. Matching vectors are separate from signing keys.
+The separate opt-in `begin-delegation-v1` profile implements attenuation, cumulative single-owner accounting, and fresh root-signed revocation snapshots; see `permissions.md`. Sealed requests and bounded results bind ciphertext digests; see `execution.md`. Remaining work includes key rotation proof and policy, reviewed conditional key release, full independent policy implementation, and external cryptographic review. Matching vectors are separate from signing keys.
 
 Sealed-content requests additionally carry `body.sealed_digest`, binding the encrypted box to signed content. This field does not grant access or change allowed task scope. See `sealed-content.md`.

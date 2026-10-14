@@ -1,6 +1,6 @@
 # Release gates
 
-All gates are NOT DEMONSTRATED in this seed. Schema tests are not security certification.
+No gate is claimed fully passed. The table defines target requirements; current experimental coverage is recorded below. Schema tests are not security certification.
 
 | Gate | Required evidence |
 |---|---|
@@ -18,3 +18,11 @@ All gates are NOT DEMONSTRATED in this seed. Schema tests are not security certi
 | E4 Measured quality | Versioned multilingual corpus, false/missed matches, incompatible-method rejection |
 
 Before public repository release: choose code and patent license terms, review attribution and dependencies, scan for secrets and private source/data, and accurately label implemented features. Before personal-data participation: pass applicable privacy/authorization gates. Publication and live deployment are separate decisions.
+
+## Current experimental coverage
+
+P1 has Ed25519 Python/Node wire interoperability and tamper/audience/expiry/replay/scope tests. P3 has attenuating grants, atomic cumulative single-owner units, fresh revocations and bounded fixture execution; distributed settlement and stopping external work are not demonstrated. P4 has three-process signed coordination, failover, mailbox retrieval, deduplication and locally replaceable signed bootstrap; independent full-policy implementations and secure multi-admin networking remain absent.
+
+D1–D4 and E1–E3 have editable synthetic records, needs without public profiles, voluntary proposal/decline, role/constraint gates and explicit permission boundaries. These are code contracts and demonstrations, not field evidence of fairness or participation. E4 has a frozen 24-case learned-model evaluation with multilingual examples, measured false/missed matches and compatibility rejection; independent labels, calibration and broad multilingual quality remain incomplete. P2 has an actual three-party passive-secure boolean predicate experiment and an owner-local query mechanism with explicit disclosure, but no complete hidden candidate discovery or reviewed conditional key release.
+
+See `completion-audit.md`, `embedding-evaluation.md`, `mpc-evaluation.md`, `goal-processes.md` and `release-audit.md` for exact scope. Experimental source publication does not certify these gates or authorize personal-data participation.

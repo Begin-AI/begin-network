@@ -25,6 +25,7 @@ def main():
     from .envelope import generate_key, sign, verify, decode, strict_json, ReplayStore
     parser = argparse.ArgumentParser(description="Experimental Begin local runtime")
     sub = parser.add_subparsers(dest="command", required=True)
+    sub.add_parser("capabilities", help="Report local runtime scope; grants no authority")
     validate = sub.add_parser("validate-index")
     validate.add_argument("path", type=Path)
     keygen = sub.add_parser("keygen")
@@ -39,7 +40,23 @@ def main():
     verifier.add_argument("--replay-db", required=True, type=Path)
     args = parser.parse_args()
     try:
-        if args.command == "validate-index":
+        if args.command == "capabilities":
+            import platform
+            from importlib.metadata import version
+            print(json.dumps({
+                "runtime": "begin-network", "package_version": version("begin-network"),
+                "python": platform.python_version(), "platform": platform.system(),
+                "protocol_version": "0.1-draft", "data_policy": "synthetic-only",
+                "adapter": "local-cli-and-python-api",
+                "core_processing": "local host; no model download or network request by this command",
+                "embedding_processing": "optional separately installed local CPU experiment",
+                "envelope_verification": True, "scoped_fixture_execution_api": True,
+                "supported_fixture_action": "available-overlap",
+                "permission_checked": False, "authority_granted": False,
+                "live_personal_data_supported": False, "arbitrary_remote_code_supported": False,
+                "secure_public_transport_supported": False
+            }, sort_keys=True))
+        elif args.command == "validate-index":
             value = validate_index(strict_json(args.path.read_bytes()))
             print("Valid index structure: %d methods, %d nodes. Trust and privacy are not verified." % (len(value["methods"]), len(value["nodes"])))
         elif args.command == "keygen":
