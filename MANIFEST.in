@@ -1,0 +1,6 @@
+include AGENTS.md SECURITY.md LICENSE-DECISION.md requirements.lock
+recursive-include docs *.md *.json *.html
+recursive-include discovery *.json
+recursive-include schemas *.json
+recursive-include examples *.py
+recursive-include experiments *.py *.json *.md *.txt *.lock

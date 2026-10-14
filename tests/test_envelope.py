@@ -33,6 +33,16 @@ class EnvelopeTests(unittest.TestCase):
         self.assertEqual((root/'schemas/envelope-payload.schema.json').read_bytes(),
                          (root/'src/begin_network/schemas/envelope-payload.schema.json').read_bytes())
 
+    def test_json_nesting_limit_ignores_quoted_brackets(self):
+        self.assertEqual(strict_json(json.dumps({'text':'['*100+'\"\\'}).encode())['text'],'['*100+'\"\\')
+        with self.assertRaises(Rejected):strict_json(('['*33+'0'+']'*33).encode())
+        nested = strict_json(('['*32+'0'+']'*32).encode())
+        for _ in range(32):
+            self.assertIsInstance(nested,list)
+            self.assertEqual(len(nested),1)
+            nested = nested[0]
+        self.assertEqual(nested,0)
+
     def test_round_trip(self):
         self.assertEqual(self.check(), self.payload)
 

@@ -13,6 +13,7 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey,
 PROFILE = 'begin+jws-v1'
 VERSION = '0.1-draft'
 MAX_MESSAGE_BYTES = 65536
+MAX_JSON_DEPTH = 32
 
 class Rejected(ValueError):
     pass
@@ -51,6 +52,25 @@ def strict_json(raw):
         return number
     try:
         text = raw.decode("utf-8") if isinstance(raw, bytes) else raw
+        # Bound parser nesting explicitly across Python versions. RecursionError
+        # behavior alone differs between CPython 3.9 and 3.12.
+        depth, quoted, escaped = 0, False, False
+        for char in text:
+            if quoted:
+                if escaped:
+                    escaped = False
+                elif char == "\\":
+                    escaped = True
+                elif char == '"':
+                    quoted = False
+            elif char == '"':
+                quoted = True
+            elif char in '[{':
+                depth += 1
+                if depth > MAX_JSON_DEPTH:
+                    raise Rejected('JSON nesting limit exceeded')
+            elif char in ']}':
+                depth -= 1
         return json.loads(text, object_pairs_hook=pairs, parse_constant=constant, parse_float=finite)
     except (ValueError, UnicodeError, RecursionError) as exc:
         raise Rejected('invalid JSON: ' + str(exc)) from exc
@@ -138,6 +158,21 @@ def verify(token, trusted_keys, audience, now=None, replay=None, revoked_keys=()
     return payload
 
 
+def validate_task_body(task):
+    required = {'purpose', 'action', 'resource', 'units'}
+    if not isinstance(task, dict) or not required <= set(task) or set(task) - required - {'sealed_digest','routing'}:
+        raise Rejected('unsupported bounded task fields')
+    if any(not isinstance(task[k],str) or not task[k] for k in ('purpose','action','resource')) or type(task['units']) is not int or not 0 <= task['units'] <= 1000000000:
+        raise Rejected('invalid bounded task')
+    if 'sealed_digest' in task and (not isinstance(task['sealed_digest'],str) or len(task['sealed_digest']) != 64 or any(c not in '0123456789abcdef' for c in task['sealed_digest'])):
+        raise Rejected('invalid sealed digest')
+    if 'routing' in task:
+        policy = task['routing']
+        if not isinstance(policy,dict) or set(policy) != {'ingress','hop_limit'} or not isinstance(policy['ingress'],str) or not policy['ingress'] or type(policy['hop_limit']) is not int or not 1 <= policy['hop_limit'] <= 16:
+            raise Rejected('invalid signed routing policy')
+    return task
+
+
 def authorize(request, grant, authority, now, revoked_grants=()):
     """Direct grant only. Inputs MUST already be cryptographically verified.
 
@@ -154,9 +189,7 @@ def authorize(request, grant, authority, now, revoked_grants=()):
         raise Rejected('unsupported grant/delegation')
     if body['subject'] != request['sender'] or grant['audience'] != request['audience']:
         raise Rejected('grant subject/audience mismatch')
-    task = request['body']
-    if not isinstance(task, dict) or set(task) not in ({'purpose', 'action', 'resource', 'units'}, {'purpose', 'action', 'resource', 'units', 'sealed_digest'}):
-        raise Rejected('unsupported task fields')
+    task = validate_task_body(request['body'])
     if any(not isinstance(body[k], str) or not body[k] for k in ('subject', 'purpose', 'resource')) or any(not isinstance(task[k], str) or not task[k] for k in ('purpose', 'action', 'resource')):
         raise Rejected('invalid scope values')
     if not isinstance(body['actions'], list) or any(not isinstance(a, str) for a in body['actions']):

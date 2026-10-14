@@ -1,0 +1,11 @@
+# Dependency audit and portability repair
+
+On 2026-10-14, a Python 3.12 advisory lookup against the new universal core lock found known entries for the earlier cryptography 46.0.7 pin. Some database entries duplicated the same advisories. The project does not use the cited certificate/PKCS#7 APIs, but retaining a vulnerable dependency pin was unnecessary. The constraint is now `cryptography>=50.0.2,<51`, with upstream Python support excluding 3.9.0/3.9.1; the project minimum is 3.9.2.
+
+Primary upstream references: [cryptography 50.0.0 release metadata](https://pypi.org/project/cryptography/50.0.0/) and [the PKCS#7 advisory and patched version](https://github.com/pyca/cryptography/security/advisories/GHSA-g6cj-pr64-35w5). The pinned lock resolves 50.0.2. A repeat pip-audit lookup reported no known vulnerabilities for the selected Python 3.12 core dependencies. Sanitized package/version/advisory IDs and the lock hash are in `dependency-audit.json`; no full third-party advisory text is redistributed.
+
+The lock was generated with `uv pip compile pyproject.toml --universal --python-version 3.9.2 --generate-hashes --output-file requirements.lock`. It contains Python-version markers and hashes for upstream distributions. Installation uses `--require-hashes`, followed by a noneditable project build with `--no-deps`. Build backend/toolchain pinning is separate and not yet a bit-for-bit reproducible build claim.
+
+A fresh noneditable Python 3.12.13 install with the lock also exposed a JSON-depth portability failure: the old test relied on RecursionError at a nesting level accepted by the newer interpreter. The parser now enforces a 32-container depth bound before decoding JSON, independently of interpreter recursion behavior. Quoted brackets/escapes and the exact limit have regression tests. All 103 core tests and the bounded goal demo passed in the installed environment after this repair and the cryptography upgrade. Local Python 3.9.6 is also checked separately.
+
+The advisory lookup checks known package advisories at that time, not novel flaws, unused optional experiment environments, source correctness, key custody or production security. Repeat it for the chosen release candidate/platform; a clean report is not a P1–E4 certification. Historical experiment reports accurately retain their earlier dependency versions.

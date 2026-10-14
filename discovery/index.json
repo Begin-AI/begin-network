@@ -4,7 +4,10 @@
   "status": "experimental",
   "schemas": [
     "schemas/discovery-index.schema.json",
-    "schemas/envelope-payload.schema.json"
+    "schemas/envelope-payload.schema.json",
+    "schemas/bounded-task.schema.json",
+    "schemas/delegation-grant.schema.json",
+    "schemas/task-result.schema.json"
   ],
   "methods": [
     {

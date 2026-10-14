@@ -8,24 +8,32 @@ Any participant may initiate. Every participant chooses. Authority stays bounded
 
 ## Status
 
-Experimental protocol/runtime under private development. Implemented: Ed25519 envelopes, direct and attenuated delegated grants, persistent atomic resource accounting, receiver-bound sealed content, owner-local encrypted-query matching, editable intention contracts, durable mailboxes, signed routing and public-index validation. Independent agent installation, Python/Node signature interoperability, three-process coordinator routing/failover and a pretrained embedding benchmark have recorded evidence.
+Experimental protocol/runtime under private development. Implemented: Ed25519 envelopes, direct and attenuated delegated grants, persistent atomic resource accounting, receiver-bound sealed content, owner-local encrypted-query matching, editable intention contracts, durable mailboxes, signed routing public-index validation, replaceable signed bootstrap, and a bounded fixture executor with encrypted signed results. Independent agent installation, Python/Node signature interoperability, three-process coordinator routing/failover and a pretrained embedding benchmark have recorded evidence.
 
 The owner-local path reveals the authorized query to the counterpart and is **not full private semantic discovery**. The learned embedding benchmark still falsely matches negation, refusal and aspiration-as-capability. Complete key release, adaptive-probing defenses, cross-host secure transport, recovery semantics and publication licensing remain unfinished. No P1–E4 gate is claimed fully passed. This repository remains private.
 
 ## Run
 
-Python 3.9+ and `jsonschema[format-nongpl]>=4.18,<5`:
+Python 3.9.2+ and `jsonschema[format-nongpl]>=4.18,<5`:
 
 ```sh
-python3 -m pip install -e '.[dev]'
+python3 -m pip install --require-hashes -r requirements.lock
+python3 -m pip install --no-deps .
 begin-network validate-index discovery/index.json
 python3 -m unittest discover -s tests -v
+python3 examples/goal_exchange_demo.py
 ```
 
 The example index contains methods and schemas, with **zero operating nodes**. It makes no network activity claims.
 
 ## Contents
 
+- [Complete synthetic goal exchange](docs/goal-exchange.md)
+- [Signed discovery bootstrap](docs/discovery-bootstrap.md)
+- [Experimental release audit](docs/release-audit.md)
+- [Security status](SECURITY.md)
+- [Pending license decision](LICENSE-DECISION.md)
+- [Dependency inventory](docs/dependencies.md)
 - [Charter](docs/charter.md)
 - [Activity definitions](docs/activity.md)
 - [Linux CI evidence](docs/ci-evidence.md)

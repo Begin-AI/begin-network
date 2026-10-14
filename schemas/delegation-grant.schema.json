@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Begin delegation grant body",
+  "description": "Structural begin-delegation-v1 body only. Issuer/subject authority, parent signatures, attenuation, validity, revocation and cumulative accounting are enforced by PermissionLedger.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile",
+    "subject",
+    "purpose",
+    "actions",
+    "resource",
+    "max_units",
+    "depth",
+    "parent"
+  ],
+  "properties": {
+    "profile": {
+      "type": "string",
+      "const": "begin-delegation-v1"
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1
+    },
+    "actions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "resource": {
+      "type": "string",
+      "minLength": 1
+    },
+    "max_units": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000000
+    },
+    "depth": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 8
+    },
+    "parent": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "minLength": 1
+        }
+      ]
+    }
+  }
+}

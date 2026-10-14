@@ -5,7 +5,7 @@ All grant/request/revocation inputs are signed tokens and verified here.
 """
 import hashlib
 import sqlite3
-from .envelope import Rejected, verify
+from .envelope import Rejected, verify, validate_task_body
 
 GRANT_PROFILE = 'begin-delegation-v1'
 
@@ -96,9 +96,7 @@ class PermissionLedger:
         request = verify(request_token, self.keys, self.audience, now=now)
         if request['type'] != 'request':
             raise Rejected('expected task request')
-        task = request['body']
-        if set(task) != {'purpose', 'action', 'resource', 'units'} or any(not isinstance(task[k], str) or not task[k] for k in ('purpose', 'action', 'resource')) or type(task['units']) is not int or not 0 <= task['units'] <= 1000000000:
-            raise Rejected('invalid bounded task')
+        task = validate_task_body(request['body'])
         chain = []
         ids = set()
         for token in grant_tokens:

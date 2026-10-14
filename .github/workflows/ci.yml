@@ -13,9 +13,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: python -m pip install -e '.[dev]'
+      - run: python -m pip install --require-hashes -r requirements.lock
+      - run: python -m pip install --no-deps .
       - run: python -m unittest discover -s tests -v
       - run: begin-network validate-index discovery/index.json
+      - run: python examples/goal_exchange_demo.py
 
   mpc-experiment:
     runs-on: ubuntu-latest
@@ -25,7 +27,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install .
+      - run: python -m pip install --require-hashes -r requirements.lock
+      - run: python -m pip install --no-deps .
       - run: python -m pip install --require-hashes -r experiments/mpc/requirements.txt
       - run: python -m unittest discover -s experiments/mpc -p test_experiment.py -v
       - run: python experiments/mpc/run.py > mpc-results.json
