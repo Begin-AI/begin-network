@@ -32,6 +32,8 @@ The example index contains methods and schemas, with **zero operating nodes**. I
 - [Implementation roadmap](docs/roadmap.md)
 - [Contribution rules](CONTRIBUTING.md)
 
-## Architectural lineage
+## Architectural lineage and design reference
 
 [US11711348B2](https://patents.google.com/patent/US11711348B2/en), Begin AI's historical distributed coordinator, and SDK embedding work inform this design. Existing private source has not been copied. Dependency and patent licensing require an explicit decision before public release; no patent grant is implied by access to this repository.
+
+When architecture is uncertain, return to the patent’s detailed design. Preserve independent operation and a stable, versioned signing/verification contract while agents improve explicitly adopted methods. A valid signature alone does not establish protocol compliance or permission.

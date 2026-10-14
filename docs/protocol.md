@@ -2,6 +2,12 @@
 
 Status: proposed contract, not an implemented secure protocol. Normative words describe target requirements. Only discovery-index structural validation is executable today.
 
+## Design authority and decentralization
+
+When design choices are uncertain, consult [US11711348B2](https://patents.google.com/patent/US11711348B2/en), especially Figures 1–9 and its detailed description, together with the founding brief and explicit founder decisions. The network serves a decentralized human-and-agent world. Independent services and device-local agents can discover, coordinate, and improve methods without a required Begin-operated service. Agent-proposed improvements require explicit adoption and cannot alter existing delegations.
+
+The stable foundation is a versioned signing and validation contract. Each receiver checks both cryptographic authenticity and applicable protocol/permission rules. A signed but noncompliant request MUST be rejected. There is no universal Begin signing key, shared secret, or company-issued approval required for each request. Key rotation and protocol evolution remain possible through explicit migration rules. Patent vector “signatures” describe semantic fit; they are not cryptographic proofs of compliance. The exact signing profile remains unresolved in this draft.
+
 ## Roles and boundaries
 
 Participants express intentions; agents act within delegation; discovery nodes identify potential counterparts; coordinators manage scoped exchanges; mailbox nodes retain expiring ciphertext. Services are replaceable. Begin is not a mandatory authority. A key identifies a key holder, not a unique human or authorized representative.
