@@ -1,5 +1,7 @@
 # Signing and permission review
 
+Current disposition: all four concrete findings S1–S4 below were resolved and revalidated on 2026-10-14. Historical reproductions are retained as the review trail; they are not claims about current behavior. Application integration limits remain applicable.
+
 Review date: 2026-10-14. Scope: `src/begin_network/envelope.py` and CLI callers as initially implemented. Dynamic reproductions used the declared `.venv` runtime. This is an adversarial code review, not a cryptographic audit. Findings refer to this reviewed snapshot; fixes require regression evidence and this record must then be annotated rather than treated as current defects forever.
 
 ## Concrete findings
@@ -51,3 +53,12 @@ New `sealed.py` binds AEAD to request ID and audience, but `open_authorized` rec
 This is content-authorship substitution, not AES-GCM breakage: public-key encryption lets anyone create ciphertext for the recipient. AEAD integrity authenticates the encryption context/key, not the authorized requester's signing key. Fix by binding the entire box or a canonical cryptographic box digest into the signed request, and checking it before decryption. Include all box profile/ephemeral/nonce/ciphertext fields in that binding. Add substitution regression tests with identical ID/audience, a second encryptor, and unchanged signed request. Update the request schema deliberately rather than accepting an unsigned external attachment by convention.
 
 The module correctly states that key holders can bypass application match/permission checks and that this composition is experimental. Preserve those limits after fixing substitution.
+
+
+## Final revalidation — S1–S4 resolved
+
+After the latest fixes, `.venv/bin/python -m unittest discover -s tests -v` passed all 42 tests (2026-10-14). The current parser normalizes the reported malformed inputs to `Rejected`, explicitly requires UTF-8, and rejects non-finite numeric overflow using a finite `parse_float` hook. A separate direct reproduction of `strict_json(b'{"v":1e999}')` now raises `Rejected`. Grant purpose/resource/subject and request action/purpose/resource now require nonempty strings, with exact integer delegation depth.
+
+The request body now carries `sealed_digest` inside signed content. `open_authorized` compares that digest against the complete canonical box before decryption. `test_attacker_cannot_substitute_ciphertext` passes, along with authorized round-trip, tamper, wrong-key/context, match and revocation tests. The S4 attack path is resolved under the existing precondition that the request and grant were independently authenticated; an attacker cannot alter the signed digest.
+
+All concrete defects found in this scoped review are resolved. This evidence does not establish production cryptographic assurance, private semantic matching, automatic network revocation, atomic budgets, or arbitrary remote-execution safety. The replay and authority integration constraints documented above remain release/application requirements.
