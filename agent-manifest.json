@@ -24,7 +24,10 @@
     "encrypted-signed-task-results",
     "three-process-loopback-goal-exchange",
     "experimental-participant-mcp-bridge",
-    "synthetic-three-process-mcp-https-exchange"
+    "synthetic-three-process-mcp-https-exchange",
+    "experimental-three-node-secret-shared-candidate-index",
+    "experimental-conditional-one-use-introductions",
+    "synthetic-six-process-unfamiliar-mcp-discovery-exchange"
   ],
   "not_implemented": [
     "complete-private-candidate-discovery",

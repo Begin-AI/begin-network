@@ -10,7 +10,7 @@ This is a dependency inventory, not a legal clearance certificate or a license g
 | cryptography 50.0.2+ (below 51) | Ed25519, X25519, HKDF and AES-GCM | Dual Apache-2.0/BSD-3-Clause; pyca/cryptography. Binary wheels also carry bundled dependency notices |
 | Node.js built-in crypto | Independent signature interoperability harness | Node.js and bundled OpenSSL notices; no npm package dependency |
 | MCP Python SDK 2.3.0 | Optional participant tool adapter and process integration client | MIT; modelcontextprotocol/python-sdk. Python 3.11+ optional client extra; transitive versions and hashes in requirements-client.lock |
-| MPyC 0.11 | Optional three-party private predicate experiment | MIT; lschoe/mpyc. Exact wheel hash in experiments/mpc/requirements.txt |
+| MPyC 0.11 | Optional three-party predicate and shared candidate-index experiments | MIT; lschoe/mpyc. Exact wheel hash in experiments/mpc/requirements.txt. Passive honest-majority only; no malicious-security claim. |
 | Sentence Transformers / Transformers / Hugging Face Hub | Optional learned-embedding benchmark | Upstream Apache-2.0 packages; exact installed versions in experiments/embeddings/requirements.lock |
 | all-MiniLM-L6-v2 weights | Optional pinned 384-dimensional encoder | Model card lists Apache-2.0; revision and downloaded-file hashes are recorded. No weights redistributed |
 | PyTorch / NumPy and experiment transitive dependencies | Optional CPU inference | Upstream distribution notices apply; version freeze records actual environment, not a full supply-chain hash lock |

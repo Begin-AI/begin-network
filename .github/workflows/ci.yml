@@ -51,8 +51,10 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install --require-hashes -r requirements-client.lock
+      - run: python -m pip install --require-hashes -r experiments/mpc/requirements.txt
       - run: python -m pip install --no-deps .
       - run: python -m unittest discover -s tests -p 'test_runtime_*.py' -v
+      - run: python -m unittest discover -s tests -p test_introductions.py -v
 
   mpc-experiment:
     runs-on: ubuntu-latest
@@ -67,7 +69,12 @@ jobs:
       - run: python -m pip install --require-hashes -r experiments/mpc/requirements.txt
       - run: python -m unittest discover -s experiments/mpc -p test_experiment.py -v
       - run: python experiments/mpc/run.py > mpc-results.json
+      - run: python experiments/shared_index/run.py --report shared-index-results.json
       - uses: actions/upload-artifact@v4
         with:
           name: mpc-experiment-evidence
           path: mpc-results.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shared-index-experiment-evidence
+          path: shared-index-results.json

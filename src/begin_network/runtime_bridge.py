@@ -19,6 +19,7 @@ from .coordination import Mailbox
 from .discovery_index import load_mirrors
 from .envelope import VERSION, Rejected, decode, generate_key, key_id, sign, strict_json, verify
 from .intentions import Intention, Store
+from .introductions import Introductions
 from .local_discovery import receive_query
 from .sealed import encryption_key, seal, sealed_digest, _decrypt_bound, open_authorized
 
@@ -52,7 +53,7 @@ class TransactionReplay:
             raise Rejected('replayed request') from exc
 
 
-class Participant:
+class Participant(Introductions):
     def __init__(self, directory, *, encoder, clock=time.time):
         self.directory = Path(directory)
         self.directory.mkdir(mode=0o700, parents=True, exist_ok=True)
@@ -269,6 +270,8 @@ class Participant:
         require(grant is not None and not grant['revoked'], 'matching grant revoked or unknown')
         verify(grant['token'], self.keys(), self.id, now=self.now())
         self.representation(grant['intention'], grant['revision'])
+        if 'invitation_id' in grant:
+            self._live_invitation(grant['invitation_id'])
         return grant
 
     def accept(self, request_id):
@@ -343,12 +346,20 @@ class Participant:
         return {'request_id': request_id, 'status': 'declined'}
 
     def receive(self, packet):
-        require(isinstance(packet, dict) and set(packet) == {'token', 'box'}, 'invalid packet')
+        require(isinstance(packet, dict) and set(packet) in ({'token', 'box'}, {'token', 'box', 'signing_public'}), 'invalid packet')
         require(len(canonical(packet)) <= 65536, 'packet too large')
-        outer = verify(packet['token'], self.keys(), self.id, now=self.now())
+        keys = self.keys()
+        introduction_key = decode(packet['signing_public']) if 'signing_public' in packet else None
+        if introduction_key is not None:
+            require(len(introduction_key) == 32, 'invalid introduction signer')
+            keys[key_id(introduction_key)] = introduction_key
+        outer = verify(packet['token'], keys, self.id, now=self.now())
         require(outer['type'] == 'response' and not outer['proofs'] and
                 outer['body'] == {'profile': PACKET, 'sealed_digest': sealed_digest(packet['box'])}, 'invalid packet profile')
-        self.peer(outer['sender'])
+        if introduction_key is None:
+            self.peer(outer['sender'])
+        else:
+            require(key_id(introduction_key) == outer['sender'], 'introduction key not bound to sender')
         fingerprint = digest(canonical(packet))
         with self.transaction():
             seen = self.get('received', outer['sender'] + ':' + outer['id'])
@@ -356,7 +367,11 @@ class Participant:
                 require(seen == fingerprint, 'conflicting delivery')
                 return {'duplicate': True}
             content = strict_json(_decrypt_bound(packet['box'], decode(self.encryption['private']), outer))
-            self._handle(outer, content)
+            if introduction_key is not None:
+                require(isinstance(content, dict) and content.get('kind') == 'introduction', 'new key only permits introduction')
+                self._receive_introduction(outer, content, introduction_key)
+            else:
+                self._handle(outer, content)
             self.put('received', outer['sender'] + ':' + outer['id'], fingerprint)
         return {'duplicate': False}
 
@@ -517,7 +532,7 @@ class BlindRelay:
         self.mailbox.close()
 
     def submit(self, packet):
-        require(isinstance(packet, dict) and set(packet) == {'token', 'box'}, 'invalid packet')
+        require(isinstance(packet, dict) and set(packet) in ({'token', 'box'}, {'token', 'box', 'signing_public'}), 'invalid packet')
         require(len(canonical(packet)) <= 65536, 'packet too large')
         # The unsigned audience is used only to select a pinned destination.
         require(isinstance(packet['token'], str) and len(packet['token'].split('.')) == 3, 'invalid signed packet')
@@ -526,6 +541,8 @@ class BlindRelay:
         audience = raw.get('audience')
         require(audience in self.keys, 'unknown mailbox recipient')
         envelope = verify(packet['token'], self.keys, audience, now=int(self.clock()))
+        if 'signing_public' in packet:
+            require(decode(packet['signing_public']) == self.keys[envelope['sender']], 'relay signer substitution')
         require(envelope['type'] == 'response' and not envelope['proofs'] and
                 envelope['body'] == {'profile': PACKET, 'sealed_digest': sealed_digest(packet['box'])}, 'invalid relay packet')
         return self.mailbox.submit(digest(packet['token']), audience, canonical(packet).encode(), envelope['expires_at'])

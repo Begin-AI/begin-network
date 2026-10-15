@@ -4,6 +4,8 @@ Originating vision: Rima Al Shikh · Begin AI. Experimental, synthetic-only, 15 
 
 This implementation corrects the separate hosted inbox pilot's architectural drift. MCP tool calls now invoke the original `intentions`, `discovery_index`, `envelope`, `local_discovery`, `sealed` and `coordination` modules. It does not replace those modules with exact-topic database routing. It does not complete the founding brief's P1–E4 gates.
 
+The subsequent [shared candidate index](shared-candidate-index.md) adds an optional unfamiliar-counterpart path. Three separate MPyC nodes compare secret-shared records and release a one-use introduction only on a positive predicate. Fifteen MCP tools now include offering, revoking and contacting through these introductions. The six-process test connects this path to the existing disclosure/reply flow without a counterpart roster or an owner-local query disclosure. Its passive security, visible metadata, local harness scheduling and deployment limits are documented separately. The original path below remains supported.
+
 ## Executable path
 
 ```text
@@ -26,7 +28,9 @@ MCP client A ── participant runner A ── HTTPS ciphertext relay ── pa
 | File | Responsibility |
 | --- | --- |
 | `src/begin_network/runtime_bridge.py` | Durable participant identity/state, runtime composition, explicit state transitions, cumulative query admission, encrypted outbox/inbox |
-| `src/begin_network/mcp_adapter.py` | Twelve official-SDK MCP tools bound to one participant; no caller-supplied account identity or state path |
+| `src/begin_network/mcp_adapter.py` | Fifteen official-SDK MCP tools bound to one participant; no caller-supplied account identity or state path |
+| `src/begin_network/introductions.py` | One-use unfamiliar contact, identity-key binding, withdrawal and integration with existing disclosure grants |
+| `src/begin_network/shared_index.py` | Optional private shares, update/admission ledger and verification of conditionally released introductions |
 | `src/begin_network/relay_transport.py` | HTTPS blind-relay transport, certificate validation, redirects refused, signed retrieval/acknowledgement |
 | `src/begin_network/encoders.py` | Explicit synthetic encoder plus local pinned MiniLM encoder; no model download or arbitrary code from tool arguments |
 | `tests/test_runtime_bridge.py` | Integrated original-runtime behavior and rejection cases |
@@ -43,7 +47,7 @@ The protocol packet profile is `begin-participant-packet-v1`. An existing Begin 
 | Relay | Sees signer/recipient identifiers, timing, sizes, expiry and traffic. Cannot decrypt using its transport key. Membership and unlinkability are not protected. |
 | Index publisher | Advertises public methods/services; has no authority over participant keys or disclosure grants. Tests replace its pinned signer and recover from an unavailable mirror. |
 | Query budget | Up to three evaluations per pinned peer/intention, persisted across restart and reissued grants. This bounds that oracle; it does not defeat many-key collusion or prove inversion resistance. |
-| Candidate discovery | Still an explicitly pinned peer roster and consent-grant exchange. No private multi-owner enumeration, grouped distributed semantic index, or cross-node nearest-neighbour search is claimed. |
+| Candidate discovery | Original owner-local path uses a pinned peer roster. The optional shared-index experiment enumerates unfamiliar candidates through a bounded secret-shared scan; no scalable global nearest-neighbour service or complete protected membership is claimed. |
 | Operator independence | Separate participant identities/state and relay process, no shared Begin signing root. Same-machine tests do not demonstrate independent operators, OS isolation or production deployment. |
 
 ## Run and measured evidence
@@ -57,7 +61,7 @@ python3.12 -m venv .venv-client
 .venv-client/bin/python -m unittest discover -s tests -v
 ```
 
-The integration test generates only temporary synthetic identities, a loopback TLS certificate and explicitly trusted test CA, private participant directories, an attested synthetic index, and a relay database. It uses certificate validation, never `verify=False`. It starts/stops its own processes and deletes the temporary state. The test harness transports the initial signed opt-in grant out of band between already pinned peers; this is not candidate discovery evidence.
+The original integration test generates only temporary synthetic identities, a loopback TLS certificate and explicitly trusted test CA, private participant directories, an attested synthetic index, and a relay database. It uses certificate validation, never `verify=False`. It starts/stops its own processes and deletes the temporary state. That original test transports the initial signed opt-in grant out of band between already pinned peers. A second test now starts with empty peer rosters and obtains its introduction through the three-node shared index; see the separate evidence account above.
 
 Observed on 15 October 2026: the official SDK client successfully discovered tools and invoked identity recovery, intention formation, matching grant, query submission, inbox retrieval, explicit acceptance, disclosure, reply, follow-up and acknowledgement across separate subprocesses. Both participant processes then exited; fresh processes recovered the same identities and pending responses. Six signed encrypted protocol packets traversed the separate HTTPS relay. Early disclosure attempts were rejected.
 
@@ -67,8 +71,8 @@ The default test uses declared two-coordinate fixtures. Optional model testing s
 
 ## What must come next
 
-1. Design and implement private candidate enumeration across independently operated discovery services. A bootstrap service directory is not itself a decentralized semantic index. Specify representation/group membership leakage and connect the selected matching method to that discovery path.
-2. Integrate stronger private matching and conditional disclosure with the actual candidate-search transcript; evaluate probing, collusion and metadata. The standalone MPC experiment is not used by this bridge.
+1. Move the implemented bounded shared-index scan from local enrollment/query harnesses to authenticated services on independently operated hosts. Add scalable candidate grouping/search and stronger membership protection. A bootstrap service directory is not itself a decentralized semantic index.
+2. Evaluate the integrated matching/key-release composition against stronger adversaries, probing, collusion and metadata. The new method uses MPyC passive security and has not passed external security review; the older standalone pairwise predicate remains a separate historical experiment.
 3. Bind authenticated remote ChatGPT/Claude principals to their approved participant runners using a maintained authentication stack, then repeat the real-client acceptance test. The current entry point is operator-side stdio and is not remotely accessible. End users must not need a Python installation.
 4. Verify separate operators/hosts, alternate relays and index sources, recovery/revocation, representation fidelity, exploration settings and per-application constraints. The current matcher checks role, timing, method/model, vector contract and consent, not every founding-brief constraint.
 

@@ -88,6 +88,40 @@ def build_server(participant, relay, bootstrap):
 
     @server.tool()
     @safe_errors
+    async def begin_offer_discovery(intention_id: str, pool: str, ttl: int = 600) -> dict[str, Any]:
+        """Opt into a one-use unfamiliar introduction through an operator-selected experimental pool.
+
+        Obtain consent first. The returned card is a private bearer capability for
+        the owner's enrollment adapter; never publish it to the bootstrap index.
+        This tool prepares consent; the optional shared-index experiment performs search.
+        """
+        return participant.offer_discovery(intention_id, pool, ttl=ttl)
+
+    @server.tool()
+    @safe_errors
+    async def begin_revoke_discovery(invitation_id: str) -> dict[str, Any]:
+        """Withdraw contact permission immediately on this runner, including pending disclosure.
+
+        Index withdrawal must also reach all selected nodes; already learned identities cannot be erased.
+        """
+        return participant.revoke_discovery(invitation_id)
+
+    @server.tool()
+    @safe_errors
+    async def begin_contact_discovered(intention_id: str, card: dict[str, Any], description: str,
+                                      idempotency_key: str) -> dict[str, Any]:
+        """With requester permission, contact a counterpart found by the private-index experiment.
+
+        A signed invitation authenticates a key and contact permission, not a human
+        or a computation proof. Full description remains local until mutual consent.
+        """
+        refresh()
+        result = participant.contact_discovered(intention_id, card, description, idempotency_key=idempotency_key)
+        participant.flush(relay)
+        return result
+
+    @server.tool()
+    @safe_errors
     async def begin_discover(intention_id: str, peer: str, grant: str, description: str, idempotency_key: str) -> dict[str, Any]:
         """Send a sealed synthetic match query under the peer's signed grant.
 
@@ -169,6 +203,7 @@ def from_config(config):
     else:
         raise ValueError('unsupported operator encoder')
     participant = Participant(config['state_directory'], encoder=implementation)
+    participant.configure_discovery_pools(config.get('discovery_pools', []))
     for peer in config['peers']:
         participant.pin_peer(peer)
     relay = HTTPSRelay(config['relay']['id'], config['relay']['endpoint'], ca_file=config['relay'].get('ca_file'))

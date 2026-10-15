@@ -1,12 +1,22 @@
 # Completion audit
 
+## Unfamiliar candidate discovery — 15 October 2026
+
+The shared-index experiment now connects private arithmetic to candidate enumeration and the original runtime. Three independently keyed processes hold Shamir shares of purpose-bound embeddings/constraints and a sealed introduction's opening key. A fixed MPyC circuit compares records without opening vectors or match bits at the nodes, converts conditional results to three-of-three masked output shares, and encrypts them to the requester. Unfamiliar self-certified keys enter the bridge only through a one-use owner invitation; acceptance and explicit disclosure remain separate.
+
+Eight shared-index acceptance tests pass, including multi-candidate/purpose/role/time/exploration gates, replay/budget persistence, signed withdrawal and snapshot rejection, invalid secret inputs, node loss, an independently keyed replacement pool, and the full encrypted participant exchange. `experiments/shared_index/results.json` binds measured processes/traffic to source hashes. The pinned 384-dimensional MiniLM test also passes its quantized predicate comparison on two synthetic candidates (`model-results.json`); this establishes actual embedding execution, not semantic usefulness.
+
+The final local Python 3.12 suite passed **151 tests** with both optional MCP and MPC dependencies installed, including ten introduction-boundary tests and source-bound evidence checks. Source and wheel builds succeeded and their new modules, experiment files and evidence were verified in the archives. The updated CI jobs have not been run remotely for this local change.
+
+The official SDK now exercises the unfamiliar path across six subprocesses: two MCP participants, three discovery nodes and an HTTPS relay. The same complete exchange also passed with the pinned MiniLM encoder in the participant servers. No counterpart roster or direct matching grant is supplied. The harness still performs private enrollment/query submission and session scheduling. Nodes are separate processes on one machine under one controller, not independently administered hosts. Passive honest-majority assumptions, exposed metadata, weak aggregate abuse controls and unreviewed conditional release remain material limitations. The existing Sites deployment and live GPT/Claude products have not been migrated. See `shared-candidate-index.md` for the exact boundary; the original objective and P1–E4 remain incomplete.
+
 ## Client architecture correction — 15 October 2026
 
 The separate Sites inbox pilot did not use this runtime and is not evidence for the founding network architecture. The new participant bridge in this repository composes its actual signing, grants, intention contracts, bootstrap, encrypted owner-local matching and mailbox implementations. See `participant-bridge.md` for the complete scope, custody/leakage contract and remaining work.
 
 Local Python 3.12 execution passed 138 tests, including the new separate-process official-MCP/HTTPS exchange and negative, restart, duplicate, expiry, decline, revocation and out-of-order cases. The same MCP process test also passed with the pinned local MiniLM model and all 11 model-file hashes checked. The new tagged-intention encoder has no measured semantic quality claim. Source and wheel builds succeeded with the new adapter entry points. A new optional CI job is configured; no remote CI result is claimed yet.
 
-This is progress on client/runtime composition, not completion: no actual GPT/Claude product has called this bridge, peer selection still uses a pinned roster and out-of-band matching grants, no private distributed semantic candidate index is implemented, the MPC experiment is not integrated, and P1–E4 remain incomplete. All new exchanges use synthetic data on one machine. The older live Sites exchange remains separately documented.
+At that snapshot, peer selection still used a pinned roster and out-of-band matching grants and MPC was separate. The subsequent shared-index milestone above supersedes those two limitations at experimental scope. No actual GPT/Claude product has called this bridge and P1–E4 remain incomplete. All new exchanges use synthetic data on one machine. The older live Sites exchange remains separately documented.
 
 Baseline assessment: 2026-10-14, before runtime implementation. This matrix is a living evidence ledger. Missing evidence means unfinished, even if a design is documented. Public publication remains a separate explicit founder decision; work may make the private repository publishable without making it public.
 

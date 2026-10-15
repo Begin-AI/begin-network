@@ -63,6 +63,19 @@
       "implementation": "experiments/embeddings/run.py"
     },
     {
+      "id": "begin/shared-index-v1",
+      "status": "experimental",
+      "purpose": "Secret-shared candidate scan and conditional introduction across three MPyC nodes; passive honest-majority only, visible metadata and bounded synthetic corpus.",
+      "privacy": "synthetic-only",
+      "implemented": true,
+      "method_version": "1",
+      "model": "per-session-pinned-model",
+      "dimensions": "dynamic",
+      "normalization": "per-session",
+      "availability": "experiment",
+      "implementation": "experiments/shared_index/party.py"
+    },
+    {
       "id": "begin/mpyc-boolean-v1",
       "status": "experimental",
       "purpose": "Three-party synthetic private predicate with unanimous signed session consent; passive honest-majority only, not complete private discovery.",

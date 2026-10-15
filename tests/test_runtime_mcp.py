@@ -26,6 +26,7 @@ from begin_network.envelope import VERSION, decode, generate_key, sign
 from begin_network.runtime_bridge import Participant, canonical
 
 HAS_MCP = sys.version_info >= (3, 11) and importlib.util.find_spec('mcp') is not None
+HAS_MPC = importlib.util.find_spec('mpyc') is not None
 
 
 def test_certificate(root):
@@ -46,9 +47,21 @@ def test_certificate(root):
 @unittest.skipUnless(HAS_MCP, 'install optional .[client] dependencies on Python 3.11+')
 class MCPProcessTests(unittest.TestCase):
     def test_two_mcp_participants_original_runtime_and_blind_https_relay(self):
+        self.exercise()
+
+    @unittest.skipUnless(HAS_MPC, 'install optional hash-locked MPyC experiment dependency')
+    def test_unfamiliar_mcp_participants_shared_index_and_https_relay(self):
+        self.exercise(shared_index=True)
+
+    def exercise(self, shared_index=False):
         with tempfile.TemporaryDirectory(prefix='begin-runtime-mcp-') as folder:
             root = Path(folder)
             test_certificate(root)
+            committee = None
+            if shared_index:
+                sys.path.insert(0, str(Path(__file__).parents[1] / 'experiments/shared_index'))
+                from harness import Committee
+                committee = Committee(root / 'discovery-pool')
             identities = []
             for name in ('a', 'b'):
                 participant = Participant(root / name, encoder=SyntheticEncoder())
@@ -84,13 +97,14 @@ class MCPProcessTests(unittest.TestCase):
                 (root / 'index.json').write_bytes(raw); (root / 'index.jws').write_text(attestation)
                 for name, peer in (('a', identities[1]), ('b', identities[0])):
                     config = {'data_policy': 'synthetic-only', 'state_directory': str(root / name),
-                        'encoder': json.loads(os.environ.get('BEGIN_TEST_ENCODER', '{"kind":"synthetic"}')), 'peers': [peer],
+                        'encoder': json.loads(os.environ.get('BEGIN_TEST_ENCODER', '{"kind":"synthetic"}')),
+                        'peers': [] if committee else [peer], 'discovery_pools': [committee.id] if committee else [],
                         'relay': {'id': relay_config['service_id'], 'endpoint': endpoint, 'ca_file': str(root / 'tls.pem')},
                         'bootstrap': {'sources': [[str(root / 'offline-index'), str(root / 'offline-signature')],
                                                  [str(root / 'index.json'), str(root / 'index.jws')]],
                                       'pins': {publisher['kid']: publisher['public']}, 'audience': 'fixture-bootstrap'}}
                     (root / (name + '.json')).write_text(canonical(config))
-                asyncio.run(self.exchange(root, identities, now))
+                asyncio.run(self.exchange(root, identities, now, committee))
                 with sqlite3.connect(root / 'relay.sqlite') as db:
                     count = db.execute('SELECT COUNT(*) FROM deliveries').fetchone()[0]
                     self.assertEqual(count, 6)
@@ -103,8 +117,10 @@ class MCPProcessTests(unittest.TestCase):
                 except subprocess.TimeoutExpired:
                     child.kill(); child.wait(timeout=5)
                 child.stdout.close(); child.stderr.close()
+                if committee:
+                    committee.close()
 
-    async def exchange(self, root, identities, now):
+    async def exchange(self, root, identities, now, committee=None):
         from mcp import Client, StdioServerParameters
 
         def client(name):
@@ -118,18 +134,45 @@ class MCPProcessTests(unittest.TestCase):
 
         async with client('a') as a, client('b') as b:
             tools = await a.list_tools()
-            self.assertEqual(len(tools.tools), 12)
+            self.assertEqual(len(tools.tools), 15)
             self.assertEqual((await call(a, 'begin_identity'))['address'], identities[0]['address'])
             for c, key, role in ((a, 'need', 'seek'), (b, 'offer', 'offer')):
                 await call(c, 'begin_set_intention', {'intention_id': key, 'purpose': 'window',
                     'facts': [], 'aspirations': ['synthetic guitar'], 'inferences': [], 'role': role,
                     'available_from': now, 'available_until': now + 600, 'expires_at': now + 900,
                     'consent': True, 'disclosure': ['aspirations']})
-            grant = await call(b, 'begin_allow_matching', {'peer': identities[0]['address'], 'intention_id': 'offer'})
-            args = {'intention_id': 'need', 'peer': identities[1]['address'], 'grant': grant['grant'],
-                    'description': 'Synthetic private description: guitar mentoring request.', 'idempotency_key': 'one'}
-            submission = await call(a, 'begin_discover', args)
-            self.assertEqual((await call(a, 'begin_discover', args))['request_id'], submission['request_id'])
+            if committee:
+                from begin_network.shared_index import enroll
+                from begin_network.encoders import LocalMiniLM
+                config = json.loads(os.environ.get('BEGIN_TEST_ENCODER', '{"kind":"synthetic"}'))
+                encoder = SyntheticEncoder() if config['kind'] == 'synthetic' else LocalMiniLM(config['directory'], config['file_hashes'])
+                offer = await call(b, 'begin_offer_discovery', {'intention_id': 'offer', 'pool': committee.id})
+                # Synthetic harness reads each owner's runner state only to feed its
+                # local enrollment/query adapter. Each worker receives one share.
+                pa = Participant(root / 'a', encoder=encoder)
+                pb = Participant(root / 'b', encoder=encoder)
+                try:
+                    self.assertEqual(pa.records('peers'), {})
+                    self.assertEqual(pb.records('peers'), {})
+                    _, owner = pb.representation('offer')
+                    _, query = pa.representation('need')
+                    _, uploads = enroll(offer['card'], owner, committee.id, committee.keys, now=int(time.time()))
+                    for node, upload in zip(committee.nodes, uploads):
+                        node.apply(upload)
+                    cards, *_ = committee.search(query, pa)
+                    self.assertEqual(len(cards), 1)
+                finally:
+                    pa.close(); pb.close()
+                tool = 'begin_contact_discovered'
+                args = {'intention_id': 'need', 'card': cards[0],
+                        'description': 'Synthetic private description: guitar mentoring request.', 'idempotency_key': 'one'}
+            else:
+                grant = await call(b, 'begin_allow_matching', {'peer': identities[0]['address'], 'intention_id': 'offer'})
+                tool = 'begin_discover'
+                args = {'intention_id': 'need', 'peer': identities[1]['address'], 'grant': grant['grant'],
+                        'description': 'Synthetic private description: guitar mentoring request.', 'idempotency_key': 'one'}
+            submission = await call(a, tool, args)
+            self.assertEqual((await call(a, tool, args))['request_id'], submission['request_id'])
             request_id = submission['request_id']
             await call(a, 'begin_disclose_request', {'request_id': request_id}, error=True)
             owner_inbox = await call(b, 'begin_check_inbox')
