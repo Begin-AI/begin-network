@@ -38,7 +38,21 @@ def contract(representation):
 
 
 def field_type():
-    from mpyc.runtime import mpc
+    import contextlib
+    import sys
+    if 'mpyc.runtime' in sys.modules and hasattr(sys.modules['mpyc.runtime'], 'mpc'):
+        return sys.modules['mpyc.runtime'].mpc.SecInt(PARAMETERS['integer_bits']).field
+    # MPyC startup logs must never corrupt a participant server's MCP stdout.
+    # The optional runtime parses process arguments at import. Our service's
+    # --config is JSON containing private keys, not an MPyC INI file. Never let
+    # the dependency interpret or log the host application's arguments.
+    arguments = sys.argv
+    try:
+        sys.argv = [arguments[0]]
+        with contextlib.redirect_stdout(sys.stderr):
+            from mpyc.runtime import mpc
+    finally:
+        sys.argv = arguments
     return mpc.SecInt(PARAMETERS['integer_bits']).field
 
 

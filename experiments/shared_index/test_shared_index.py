@@ -51,6 +51,20 @@ class SharedIndexTests(unittest.TestCase):
         self.participants.append(participant)
         return participant
 
+    def test_connected_workers_reject_different_validly_authorized_sessions(self):
+        session, configs = self.pool.prepare(self.query, self.requester)
+        changed = copy.deepcopy(session)
+        changed['id'] += '-different'
+        body = {'profile': changed['profile'], 'session_digest': fingerprint(changed)}
+        def consent(key):
+            return signed(key, 'shared-index:' + changed['id'], changed['id'], body,
+                          changed['issued_at'], changed['expires_at'])
+        configs[1]['session'] = changed
+        configs[1]['requester_consent'] = consent(self.requester.signing)
+        configs[1]['consents'] = [consent(key) for key in self.pool.keys]
+        self.assertEqual(self.pool.run(configs, expect_failure=True), [])
+        self.assertEqual(self.pool.last_metrics, [])
+
     def test_private_candidate_scan_exploration_and_purpose_constraints(self):
         other = self.participant('piano', 'offer', text='synthetic piano')
         self.pool.enroll(other, 'intention')

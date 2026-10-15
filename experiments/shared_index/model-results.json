@@ -15,32 +15,32 @@
   "model_manifest_sha256": "9cf8ce8fba6ff86a0dc9fe957dcc2e8f80b7388bbc797e4dc4fa7dca0647be91",
   "parties": [
     {
-      "bytes_sent": 5565312,
-      "elapsed_seconds": 3.8310285420157015,
+      "bytes_sent": 5565494,
+      "elapsed_seconds": 3.938349707983434,
       "learns_complete_vectors": false,
       "learns_match_bits": false,
       "party": 0,
-      "pid": 55432,
+      "pid": 59551,
       "rows": 2,
       "tls": true
     },
     {
-      "bytes_sent": 5565312,
-      "elapsed_seconds": 3.8345940420404077,
+      "bytes_sent": 5565494,
+      "elapsed_seconds": 3.9382954579778016,
       "learns_complete_vectors": false,
       "learns_match_bits": false,
       "party": 1,
-      "pid": 55433,
+      "pid": 59552,
       "rows": 2,
       "tls": true
     },
     {
-      "bytes_sent": 5565312,
-      "elapsed_seconds": 3.830649666953832,
+      "bytes_sent": 5565494,
+      "elapsed_seconds": 3.938400625018403,
       "learns_complete_vectors": false,
       "learns_match_bits": false,
       "party": 2,
-      "pid": 55434,
+      "pid": 59553,
       "rows": 2,
       "tls": true
     }
@@ -48,16 +48,17 @@
   "predicate_equivalence": true,
   "semantic_quality_evaluated": false,
   "source_hashes": {
+    "discovery_session.py": "612e52588992dbbbe482178a2b482302ccb39e779a407828cbba1324df781354",
     "encoders.py": "8a0a3a6b2d3e0c70e796ce4283dc0983260e05e3caf278f871384b9b90fce9f4",
     "envelope.py": "cad452bc0a3823e50198bb3f15b7455003552f713702c03dcb2c3e0d67d6c6e8",
     "intentions.py": "250834a1ee7df37ff450107601e8e19b39ac54ce5ed126bb66f6a5300d02b8b9",
     "introductions.py": "1acacab9806c50d4eb0440152a87cce367f8f30455e4c603acc6f96603cc3bd5",
     "local_discovery.py": "7f10f790b14034cd69fdb3d12b0cab76b08aed13d8fdf187f4d65993743c1fd2",
-    "party.py": "187646efec4f40c168d3ae40ae00820d6e17a2f09fd830daab2f42f9930bc895",
+    "party.py": "5f73f5f7db88ea395c150308242f91ed4f81900229169d1de5a87b6a20263240",
     "runtime_bridge.py": "fa8cb03080330b68630e0934eb82463539f4d04c0420b5321e57cf988298479c",
     "sealed.py": "62b7abc4038eaa8da1f23f7657cfee7e28beed1fc9bfd8b023495be0495ee661",
-    "shared_index.py": "6842df1eac70f02d94f60401fcc086f7ecd105de0621d18febff146c1303212a",
-    "support.py": "31fdb30b825e9d58e4b88928ca8f5a4e530277d099bcffea647350d71f1df3c5"
+    "shared_index.py": "46934d451e1fbc5fbd5210ecf00d7eaed7e936029db2cb930911de0f4ddc4ccf",
+    "support.py": "1dfa267c199d43b37bf6465d197e4154c10cc186bc0281fc4035f820e110dba8"
   },
   "synthetic_only": true
 }

@@ -1,5 +1,7 @@
 # Experimental shared candidate index
 
+The subsequent [HTTPS service milestone](discovery-services.md) replaces harness-managed submission with authenticated node APIs and participant-side MCP tools. Historical harness limitations below still describe the original fixture, not the new service path.
+
 Originating vision: Rima Al Shikh · Begin AI. Synthetic-only implementation, 15 October 2026.
 
 This adds the missing path between an intention and an unfamiliar counterpart. A requester starts with **zero counterpart keys**. A private three-node index compares protected candidate representations, conditionally releases a one-use introduction, and feeds the existing participant runtime's proposal → acceptance → explicit disclosure → reply/follow-up path. The counterpart does not receive the query vector on this path. The older owner-local method remains available with its different disclosure contract.

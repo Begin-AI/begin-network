@@ -15,7 +15,7 @@ from .runtime_bridge import Participant, require
 from .relay_transport import HTTPSRelay
 
 
-def build_server(participant, relay, bootstrap):
+def build_server(participant, relay, bootstrap, discovery=None):
     from mcp.server import MCPServer
     from mcp.server.mcpserver.exceptions import ToolError
     server = MCPServer('Begin original runtime', version='0.1.0',
@@ -190,6 +190,51 @@ def build_server(participant, relay, bootstrap):
         """Acknowledge one handled message in this participant's local inbox."""
         return participant.acknowledge(message_id)
 
+    if discovery is not None:
+        @server.tool()
+        @safe_errors
+        async def begin_publish_intention(pool: str, intention_id: str, idempotency_key: str,
+                                          minimum_score: int = 500000) -> dict[str, Any]:
+            """With consent, enroll an intention's secret shares at three selected experimental nodes.
+
+            Nodes learn enrollment metadata. Two colluding nodes can recover inputs.
+            This does not publish the description or authorize its disclosure.
+            """
+            return discovery.publish(pool, intention_id, idempotency_key, minimum_score)
+
+        @server.tool()
+        @safe_errors
+        async def begin_withdraw_enrollment(enrollment_id: str) -> dict[str, Any]:
+            """Revoke local contact permission first, then withdraw from all three nodes; retry failures."""
+            return discovery.withdraw(enrollment_id)
+
+        @server.tool()
+        @safe_errors
+        async def begin_search_network(pool: str, intention_id: str, idempotency_key: str,
+                                       minimum_score: int = 500000) -> dict[str, Any]:
+            """With consent, submit a bounded private discovery job to three operator-selected nodes.
+
+            Reuse the idempotency key after errors; never silently spend another query.
+            Follow with begin_check_search. This is an experimental passive-security method.
+            """
+            return discovery.search(pool, intention_id, idempotency_key, minimum_score)
+
+        @server.tool()
+        @safe_errors
+        async def begin_check_search(search_id: str) -> dict[str, Any]:
+            """Retrieve a saved search; reveal matches only after all three signed outputs arrive."""
+            return discovery.check(search_id)
+
+        @server.tool()
+        @safe_errors
+        async def begin_contact_network_match(search_id: str, match_id: str, description: str,
+                                              idempotency_key: str) -> dict[str, Any]:
+            """With permission, propose contact to a saved match; description stays local pending consent."""
+            refresh()
+            result = discovery.contact(search_id, match_id, description, idempotency_key)
+            participant.flush(relay)
+            return result
+
     return server
 
 
@@ -207,7 +252,13 @@ def from_config(config):
     for peer in config['peers']:
         participant.pin_peer(peer)
     relay = HTTPSRelay(config['relay']['id'], config['relay']['endpoint'], ca_file=config['relay'].get('ca_file'))
-    return participant, build_server(participant, relay, config['bootstrap'])
+    discovery = None
+    if config.get('discovery_services'):
+        from .discovery_runner import DiscoveryRunner
+        from .shared_index import field_type
+        field_type()  # Before tool calls or HTTP threads; keep MCP stdout clean.
+        discovery = DiscoveryRunner(participant, config['discovery_services'])
+    return participant, build_server(participant, relay, config['bootstrap'], discovery)
 
 
 def main():

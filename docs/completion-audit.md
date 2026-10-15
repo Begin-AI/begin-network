@@ -1,5 +1,11 @@
 # Completion audit
 
+## HTTPS discovery services — 15 October 2026
+
+Three HTTPS node services now accept separately authorized enrollment and query callers, issue their own session approvals, schedule bounded workers and retain encrypted results across service restart. The requester runner persists jobs before submission. Five optional MCP tools cover enrollment, withdrawal, search, polling and saved-match contact. The official SDK test closes and reopens two MCP adapters while the node services retain the search. Nodes also compare session digests over their computation connections before using shares.
+
+All three service integration tests, nine shared-index tests and the 151-test core suite passed locally. The pinned 384-dimensional embedding comparison was rerun and its source-bound report refreshed. Source and wheel builds succeeded; packaged service modules, documentation and experiment files were inspected. Updated CI has not run remotely. They cover authorization/role rejection, result-owner isolation, persisted results, missing consents, query mutation, snapshot withdrawal, cancellation and the two-client MCP path. The original shared-index suite now adds a mismatched-session regression. See `discovery-services.md` for operator configuration and precise limits. Tests remain on one host with synthetic inputs; actual GPT/Claude products, independent operators, production scheduling, stronger privacy and semantic evaluation remain unfinished. No deployment or public node advertisement was made.
+
 ## Unfamiliar candidate discovery — 15 October 2026
 
 The shared-index experiment now connects private arithmetic to candidate enumeration and the original runtime. Three independently keyed processes hold Shamir shares of purpose-bound embeddings/constraints and a sealed introduction's opening key. A fixed MPyC circuit compares records without opening vectors or match bits at the nodes, converts conditional results to three-of-three masked output shares, and encrypts them to the requester. Unfamiliar self-certified keys enter the bridge only through a one-use owner invitation; acceptance and explicit disclosure remain separate.
