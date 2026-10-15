@@ -37,6 +37,7 @@ The example index contains methods and schemas, with **zero operating nodes**. I
 - [Requirement checklist](docs/release-checklist.md)
 - [Independent candidate audit](docs/candidate-audit.md)
 - [Candidate download trial](docs/candidate-agent-evidence.md)
+- [Existing GPT and Claude client integration](docs/client-integration.md)
 - [Local runtime adapter](docs/runtime-adapter.md)
 - [Security status](SECURITY.md)
 - [Pending license decision](LICENSE-DECISION.md)
