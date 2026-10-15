@@ -4,11 +4,11 @@ The patent's vector signatures describe relevance for discovery, separate from c
 
 `src/begin_network/matching.py` implements three purpose partitions:
 
-- **Mirror:** peer intentions for reflection and affinity.
+- **Mirror:** current interests, capabilities, circumstances, needs and experience.
 - **Window:** aspirations and exploration in the founding vision. This narrow experiment uses complementary seek/offer cases within that broader purpose.
-- **Social:** peer intentions for voluntary social discovery.
+- **Social:** possible participants, contributors or beneficiaries.
 
-Purpose, role, language, exact location, and mutual required tags constrain eligibility before relevance scoring. Participation can be declined. Missing relevance returns `no-match`. Explicit exploration can expose a nonzero, below-threshold result, labeled `exploration`; it never overrides constraints or decline. Discovery grants no authority. Purpose-specific behavior here is a baseline partition and role policy, not three separately trained representation models or a complete definition of the founding concepts. In particular, Window is not restricted to help-seeking or complementary roles; future methods must represent aspirations and exploration beyond this fixture.
+Purpose, role, language, exact location, and mutual required tags constrain eligibility before relevance scoring. Roles are independent of purpose: seek/offer, offer/seek and peer/peer can occur in all three partitions. The former Window-only complement rule was corrected on 15 October 2026. Participation can be declined. Missing relevance returns `no-match`. Explicit exploration can expose a nonzero, below-threshold result, labeled `exploration`; it never overrides constraints or decline. Discovery grants no authority. Purpose partitions are not three separately trained representation models or a complete implementation of the founding concepts. Window still requires measured aspiration and exploration behavior beyond these fixtures.
 
 Each representation records method and model version, purpose through its source intention, a deterministic SHA-256 of the exact source text, and synthetic provenance. The digest is an audit aid, not proof that the text or self-declared tags are true. Raw text and token representations are visible in memory. A low-entropy text digest can also reveal content through guessing. Do not publish real intentions, representations, or their hashes to a discovery index.
 
@@ -23,7 +23,7 @@ The fixed, hand-authored corpus is `examples/matching_cases.json`. At threshold 
 | Lexical | 1 | 2 | 7 | 3 |
 | Curated concepts | 4 | 2 | 7 | 0 |
 
-Seven unit tests verify purpose handling, determinism/provenance, incompatible representations, constraint precedence, explicit exploration, unsupported methods, and the complete corpus confusion counts. Reproduce from the repository root:
+Tests verify purpose handling, independent task roles, determinism/provenance, incompatible representations, constraint precedence, explicit exploration, unsupported methods, and the complete corpus confusion counts. Reproduce from the repository root:
 
 ```sh
 PYTHONPATH=src python3 -m unittest discover -s tests -p test_matching.py -v

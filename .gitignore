@@ -2,6 +2,8 @@ __pycache__/
 *.pyc
 *.egg-info/
 .venv/
+.venv-*/
+.participant-state/
 build/
 dist/
 .env

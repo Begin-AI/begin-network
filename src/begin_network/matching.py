@@ -72,9 +72,9 @@ def compare(query, candidate, threshold=0.3, explore=False):
         return Decision(c.id, 'ineligible', 0, 'language/location constraint')
     if not set(q.required_tags).issubset(c.tags) or not set(c.required_tags).issubset(q.tags):
         return Decision(c.id, 'ineligible', 0, 'required tags missing')
-    # Window asks for a complementary contribution; mirror/social seek peers.
-    role_ok = (COMPLEMENTS[q.role] == c.role if q.purpose == 'window'
-               else q.role == c.role == 'peer')
+    # Roles belong to the task, independently of Mirror/Window/Social purpose.
+    # Window represents aspirations/exploration, not a synonym for seeking help.
+    role_ok = COMPLEMENTS[q.role] == c.role
     if not role_ok:
         return Decision(c.id, 'ineligible', 0, 'role mismatch')
     a, b = set(query.tokens), set(candidate.tokens)

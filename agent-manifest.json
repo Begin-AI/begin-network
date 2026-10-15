@@ -22,7 +22,9 @@
     "locally-pinned-signed-index-bootstrap",
     "synthetic-bounded-fixture-execution",
     "encrypted-signed-task-results",
-    "three-process-loopback-goal-exchange"
+    "three-process-loopback-goal-exchange",
+    "experimental-participant-mcp-bridge",
+    "synthetic-three-process-mcp-https-exchange"
   ],
   "not_implemented": [
     "complete-private-candidate-discovery",

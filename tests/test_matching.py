@@ -17,6 +17,16 @@ class MatchingTests(unittest.TestCase):
         for purpose in ('window', 'mirror', 'social'):
             self.assertEqual(compare(*self.pair(purpose)).status, 'match')
 
+    def test_task_roles_are_independent_of_representation_purpose(self):
+        for purpose in ('mirror', 'window', 'social'):
+            for left, right in (('seek', 'offer'), ('offer', 'seek'), ('peer', 'peer')):
+                q = represent(Intention('q', purpose, 'python', role=left))
+                c = represent(Intention('c', purpose, 'python', role=right))
+                self.assertEqual(compare(q, c).status, 'match')
+            q = represent(Intention('q', purpose, 'python', role='seek'))
+            c = represent(Intention('c', purpose, 'python', role='seek'))
+            self.assertEqual(compare(q, c).reason, 'role mismatch')
+
     def test_provenance_and_determinism(self):
         q, _ = self.pair()
         self.assertEqual(q, represent(q.intention))

@@ -9,6 +9,7 @@ This is a dependency inventory, not a legal clearance certificate or a license g
 | jsonschema format-nongpl extras and transitive packages | URI/date-time validation | Each installed distribution's own notices; the nongpl extra avoids selecting GPL format packages |
 | cryptography 50.0.2+ (below 51) | Ed25519, X25519, HKDF and AES-GCM | Dual Apache-2.0/BSD-3-Clause; pyca/cryptography. Binary wheels also carry bundled dependency notices |
 | Node.js built-in crypto | Independent signature interoperability harness | Node.js and bundled OpenSSL notices; no npm package dependency |
+| MCP Python SDK 2.3.0 | Optional participant tool adapter and process integration client | MIT; modelcontextprotocol/python-sdk. Python 3.11+ optional client extra; transitive versions and hashes in requirements-client.lock |
 | MPyC 0.11 | Optional three-party private predicate experiment | MIT; lschoe/mpyc. Exact wheel hash in experiments/mpc/requirements.txt |
 | Sentence Transformers / Transformers / Hugging Face Hub | Optional learned-embedding benchmark | Upstream Apache-2.0 packages; exact installed versions in experiments/embeddings/requirements.lock |
 | all-MiniLM-L6-v2 weights | Optional pinned 384-dimensional encoder | Model card lists Apache-2.0; revision and downloaded-file hashes are recorded. No weights redistributed |

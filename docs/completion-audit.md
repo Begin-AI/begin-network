@@ -1,5 +1,13 @@
 # Completion audit
 
+## Client architecture correction — 15 October 2026
+
+The separate Sites inbox pilot did not use this runtime and is not evidence for the founding network architecture. The new participant bridge in this repository composes its actual signing, grants, intention contracts, bootstrap, encrypted owner-local matching and mailbox implementations. See `participant-bridge.md` for the complete scope, custody/leakage contract and remaining work.
+
+Local Python 3.12 execution passed 138 tests, including the new separate-process official-MCP/HTTPS exchange and negative, restart, duplicate, expiry, decline, revocation and out-of-order cases. The same MCP process test also passed with the pinned local MiniLM model and all 11 model-file hashes checked. The new tagged-intention encoder has no measured semantic quality claim. Source and wheel builds succeeded with the new adapter entry points. A new optional CI job is configured; no remote CI result is claimed yet.
+
+This is progress on client/runtime composition, not completion: no actual GPT/Claude product has called this bridge, peer selection still uses a pinned roster and out-of-band matching grants, no private distributed semantic candidate index is implemented, the MPC experiment is not integrated, and P1–E4 remain incomplete. All new exchanges use synthetic data on one machine. The older live Sites exchange remains separately documented.
+
 Baseline assessment: 2026-10-14, before runtime implementation. This matrix is a living evidence ledger. Missing evidence means unfinished, even if a design is documented. Public publication remains a separate explicit founder decision; work may make the private repository publishable without making it public.
 
 ## Original objective and required deliverables

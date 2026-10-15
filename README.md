@@ -12,6 +12,8 @@ Experimental protocol/runtime under private development. Implemented: Ed25519 en
 
 The owner-local path reveals the authorized query to the counterpart and is **not full private semantic discovery**. The learned embedding benchmark still falsely matches negation, refusal and aspiration-as-capability. Complete key release, adaptive-probing defenses, cross-host secure transport, recovery semantics and publication licensing remain unfinished. No P1–E4 gate is claimed fully passed. This repository remains private.
 
+The [participant MCP bridge](docs/participant-bridge.md) now joins this original runtime's signed bootstrap, editable intentions, encrypted owner-local matching, explicit disclosure grants and durable replies. A three-process test uses two MCP participant servers and a separate HTTPS relay; a second run uses pinned local pretrained embeddings. These are synthetic same-machine tests. The earlier live ChatGPT Sites inbox pilot is separate and has not been migrated to this bridge. Private candidate enumeration and actual GPT/Claude connections to this runtime remain unfinished.
+
 ## Run
 
 Python 3.9.2+ and `jsonschema[format-nongpl]>=4.18,<5`:
@@ -38,6 +40,7 @@ The example index contains methods and schemas, with **zero operating nodes**. I
 - [Independent candidate audit](docs/candidate-audit.md)
 - [Candidate download trial](docs/candidate-agent-evidence.md)
 - [Existing GPT and Claude client integration](docs/client-integration.md)
+- [Participant MCP bridge and verification](docs/participant-bridge.md)
 - [Local runtime adapter](docs/runtime-adapter.md)
 - [Security status](SECURITY.md)
 - [Pending license decision](LICENSE-DECISION.md)

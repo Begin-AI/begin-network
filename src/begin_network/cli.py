@@ -48,6 +48,8 @@ def main():
                 "python": platform.python_version(), "platform": platform.system(),
                 "protocol_version": "0.1-draft", "data_policy": "synthetic-only",
                 "adapter": "local-cli-and-python-api",
+                "optional_client_adapter": "participant-bound-stdio-mcp; Python 3.11+ and client extra",
+                "actual_remote_client_integration": False,
                 "core_processing": "local host; no model download or network request by this command",
                 "embedding_processing": "optional separately installed local CPU experiment",
                 "envelope_verification": True, "scoped_fixture_execution_api": True,
