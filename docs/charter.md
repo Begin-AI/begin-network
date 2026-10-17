@@ -4,7 +4,7 @@ Originating vision: Rima Al Shikh · Begin AI. Read the founding brief and [US11
 
 - Any human or agent may initiate a goal. A new goal creates no rights over another participant's data, attention, money or compute.
 - Participation is voluntary, scoped and revocable for future access. Decline, no-match, pause and exit are valid outcomes. Receiving help creates no debt.
-- People may maintain several editable intentions. Mirror reflects current context, Window expresses aspirations/exploration, and Social represents potential chosen connections. None is a permanent identity label or universal worth score.
+- People may maintain several editable intentions; each has one representation balancing all three dimensions together. Mirror reflects current context, Window expresses aspirations/exploration, and Social represents potential chosen connections. None is a permanent identity label or universal worth score.
 - Independent participants may operate coordinators, discovery services, methods and mailboxes. No permanent Begin gateway, company signing key, company approval of every request, compulsory fee or native currency is required.
 - Local hosts select trusted identities, methods and permissions. Cryptographic authenticity and protocol/authority checks are distinct. A valid signature or high similarity grants no new authority.
 - Private intentions, vectors, memberships and sealed content do not belong in the public discovery index. Every privacy mechanism must state its leakage and adversary assumptions; experimental results do not silently become security claims.

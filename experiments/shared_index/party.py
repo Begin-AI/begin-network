@@ -32,12 +32,12 @@ def preflight(config, node):
 
 def valid_row(row, dim, secint):
     vector = row[:dim]
-    purpose, role, start, end, floor, active = row[dim:dim+6]
+    profile, role, start, end, floor, active = row[dim:dim+6]
     norm = mpc.in_prod(vector, vector)
     tolerance = norm_tolerance(dim)
     checks = [(v >= -1000) * (v <= 1000) for v in vector]
     checks += [(norm >= 1000000 - tolerance), (norm <= 1000000 + tolerance),
-               (purpose >= 0), (purpose <= 2), (role >= 0), (role <= 2),
+               (profile == 2), (role >= 0), (role <= 2),
                (start >= 0), (end < 2**40), (start < end),
                (floor >= 200000), (floor <= 1000000), (active == 1)]
     return mpc.prod(checks)
@@ -60,7 +60,7 @@ async def compute(config, rows):
         cp, cr, cs, ce, cfloor, _ = row[dim:dim+6]
         roles = ((qr == 0) * (cr == 1) + (qr == 1) * (cr == 0) + (qr == 2) * (cr == 2))
         score = mpc.in_prod(query[:dim], row[:dim])
-        fit = mpc.prod([valid, qp == cp, roles, qs < ce, cs < qe,
+        fit = mpc.prod([valid, roles, qs < ce, cs < qe,
                         qe > session['issued_at'], ce > session['issued_at'], score >= qfloor, score >= cfloor])
         key = row[dim+6:]
         fit *= mpc.prod([(v >= 0) * (v <= 255) for v in key])

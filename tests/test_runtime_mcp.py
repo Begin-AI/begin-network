@@ -137,7 +137,9 @@ class MCPProcessTests(unittest.TestCase):
             self.assertEqual(len(tools.tools), 15)
             self.assertEqual((await call(a, 'begin_identity'))['address'], identities[0]['address'])
             for c, key, role in ((a, 'need', 'seek'), (b, 'offer', 'offer')):
-                await call(c, 'begin_set_intention', {'intention_id': key, 'purpose': 'window',
+                await call(c, 'begin_set_intention', {'intention_id': key, 'purpose': 'integrated',
+                    'perspectives': {k: ['synthetic guitar'] for k in ('mirror','window','social')},
+                    'balance': {k: 1/3 for k in ('mirror','window','social')},
                     'facts': [], 'aspirations': ['synthetic guitar'], 'inferences': [], 'role': role,
                     'available_from': now, 'available_until': now + 600, 'expires_at': now + 900,
                     'consent': True, 'disclosure': ['aspirations']})

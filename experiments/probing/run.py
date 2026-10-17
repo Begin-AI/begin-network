@@ -20,7 +20,7 @@ def run(rounds=12):
     keys = {key['kid']: decode(key['public']) for key in (requester, owner)}
     truth = 0.37  # synthetic benchmark truth, never sent to the probing requester
     candidate = {'method': 'synthetic-l2-v1', 'model': 'chosen-query-fixture-v1',
-                 'purpose': 'window', 'role': 'offer', 'available_from': 100,
+                 'purpose': 'integrated', 'role': 'offer', 'available_from': 100,
                  'available_until': 190, 'values': [math.cos(truth), math.sin(truth)]}
 
     def envelope(key, kind, identifier, body, proofs=None):

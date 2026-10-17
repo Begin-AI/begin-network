@@ -16,6 +16,8 @@ def validate_query(value):
         raise Rejected('unsupported matching query fields')
     if any(not isinstance(value[k], str) or not value[k] for k in ('method', 'model', 'purpose')) or value['role'] not in ('seek', 'offer', 'peer'):
         raise Rejected('invalid matching contract')
+    if value['purpose'] != 'integrated':
+        raise Rejected('legacy single-purpose representation rejected')
     if type(value['available_from']) is not int or type(value['available_until']) is not int or value['available_from'] >= value['available_until']:
         raise Rejected('invalid availability')
     vector = value['values']

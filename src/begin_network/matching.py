@@ -1,4 +1,9 @@
-"""Inspectable synthetic matching baselines; plaintext, not private embeddings."""
+"""Historical v1 lexical baseline, retained ONLY to reproduce old benchmark evidence.
+
+Its separate purpose categories predate the founder's integrated-representation
+correction. Do not use this module for participant discovery; the current path is
+intentions + encoders + local_discovery/shared_index, with balanced v2 vectors.
+"""
 from dataclasses import dataclass
 import hashlib
 import math

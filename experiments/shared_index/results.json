@@ -7,32 +7,32 @@
       "case": "independent-pool-after-node-loss",
       "parties": [
         {
-          "bytes_sent": 244870,
-          "elapsed_seconds": 0.13547200011089444,
+          "bytes_sent": 238084,
+          "elapsed_seconds": 0.12936454103328288,
           "learns_complete_vectors": false,
           "learns_match_bits": false,
           "party": 0,
-          "pid": 59566,
+          "pid": 35311,
           "rows": 1,
           "tls": true
         },
         {
-          "bytes_sent": 244870,
-          "elapsed_seconds": 0.13544908305630088,
+          "bytes_sent": 238084,
+          "elapsed_seconds": 0.12940737488679588,
           "learns_complete_vectors": false,
           "learns_match_bits": false,
           "party": 1,
-          "pid": 59567,
+          "pid": 35312,
           "rows": 1,
           "tls": true
         },
         {
-          "bytes_sent": 244870,
-          "elapsed_seconds": 0.13548045908100903,
+          "bytes_sent": 238084,
+          "elapsed_seconds": 0.12947983294725418,
           "learns_complete_vectors": false,
           "learns_match_bits": false,
           "party": 2,
-          "pid": 59568,
+          "pid": 35313,
           "rows": 1,
           "tls": true
         }
@@ -43,32 +43,32 @@
       "dimensions": 2,
       "parties": [
         {
-          "bytes_sent": 1499494,
-          "elapsed_seconds": 0.849775625159964,
+          "bytes_sent": 1465948,
+          "elapsed_seconds": 0.8055287920869887,
           "learns_complete_vectors": false,
           "learns_match_bits": false,
           "party": 0,
-          "pid": 59578,
+          "pid": 35322,
           "rows": 7,
           "tls": true
         },
         {
-          "bytes_sent": 1499494,
-          "elapsed_seconds": 0.8497991249896586,
+          "bytes_sent": 1465948,
+          "elapsed_seconds": 0.8055239578243345,
           "learns_complete_vectors": false,
           "learns_match_bits": false,
           "party": 1,
-          "pid": 59579,
+          "pid": 35323,
           "rows": 7,
           "tls": true
         },
         {
-          "bytes_sent": 1499494,
-          "elapsed_seconds": 0.8496818328276277,
+          "bytes_sent": 1465948,
+          "elapsed_seconds": 0.8055885001085699,
           "learns_complete_vectors": false,
           "learns_match_bits": false,
           "party": 2,
-          "pid": 59580,
+          "pid": 35324,
           "rows": 7,
           "tls": true
         }
@@ -80,15 +80,15 @@
   "python": "3.12.13",
   "source_hashes": {
     "discovery_session.py": "612e52588992dbbbe482178a2b482302ccb39e779a407828cbba1324df781354",
-    "encoders.py": "8a0a3a6b2d3e0c70e796ce4283dc0983260e05e3caf278f871384b9b90fce9f4",
+    "encoders.py": "36f730a8c6f00b017778ef999aa0e74be58dc2a67053b7506c527a913dba4d49",
     "envelope.py": "cad452bc0a3823e50198bb3f15b7455003552f713702c03dcb2c3e0d67d6c6e8",
-    "intentions.py": "250834a1ee7df37ff450107601e8e19b39ac54ce5ed126bb66f6a5300d02b8b9",
+    "intentions.py": "c425dcea04f6523f94088fc4cb26d51f1f4d326c638c8ef9e787a8e788d9ca12",
     "introductions.py": "1acacab9806c50d4eb0440152a87cce367f8f30455e4c603acc6f96603cc3bd5",
-    "local_discovery.py": "7f10f790b14034cd69fdb3d12b0cab76b08aed13d8fdf187f4d65993743c1fd2",
-    "party.py": "5f73f5f7db88ea395c150308242f91ed4f81900229169d1de5a87b6a20263240",
-    "runtime_bridge.py": "fa8cb03080330b68630e0934eb82463539f4d04c0420b5321e57cf988298479c",
+    "local_discovery.py": "40e56f1237a8879910de21bf1717a81224d08bd96c72648681af3d6defedcfc5",
+    "party.py": "b6bf641f1be6501155b5fde68d915ad587ce2d14719976fb1e9d8853635c5659",
+    "runtime_bridge.py": "5f113209d6dcbd8d72ba3691b8a5097ac23d51e7a57a5a4c5f7dde144bfac41a",
     "sealed.py": "62b7abc4038eaa8da1f23f7657cfee7e28beed1fc9bfd8b023495be0495ee661",
-    "shared_index.py": "46934d451e1fbc5fbd5210ecf00d7eaed7e936029db2cb930911de0f4ddc4ccf",
+    "shared_index.py": "cc9fd88d3e77e0c5d4020711ff8a33f32eba205fe58c05fbc131816c03704935",
     "support.py": "1dfa267c199d43b37bf6465d197e4154c10cc186bc0281fc4035f820e110dba8"
   },
   "successful": true,
@@ -98,13 +98,15 @@
     "test_shared_index.SharedIndexTests.test_connected_workers_reject_different_validly_authorized_sessions",
     "test_shared_index.SharedIndexTests.test_expiry_removes_shares_and_stale_snapshot_cannot_complete",
     "test_shared_index.SharedIndexTests.test_node_loss_requires_whole_independently_selected_pool",
-    "test_shared_index.SharedIndexTests.test_private_candidate_scan_exploration_and_purpose_constraints",
+    "test_shared_index.SharedIndexTests.test_persisted_v1_rows_are_not_reinterpreted_as_integrated",
+    "test_shared_index.SharedIndexTests.test_private_candidate_scan_exploration_and_integrated_constraints",
+    "test_shared_index.SharedIndexTests.test_private_matching_uses_the_combined_balance",
     "test_shared_index.SharedIndexTests.test_revocation_rollback_wrong_owner_and_inflight_snapshot",
     "test_shared_index.SharedIndexTests.test_secret_range_normalization_and_willingness_gates",
     "test_shared_index.SharedIndexTests.test_session_tampering_and_wrong_result_recipient_rejected",
     "test_shared_index.SharedIndexTests.test_unknown_participants_complete_existing_encrypted_exchange"
   ],
-  "tests_run": 9,
+  "tests_run": 11,
   "trust": "three passive MPC nodes, at most one passively corrupt; not malicious security",
-  "wall_seconds": 25.41596179199405
+  "wall_seconds": 24.368196916999295
 }

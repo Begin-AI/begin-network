@@ -1,32 +1,45 @@
 {
-  "fixture": "fictional-participant-goals-v1",
+  "fixture": "fictional-integrated-intention-v2",
   "notice": "Synthetic example; no real participant facts or trained vectors.",
   "participant": "synthetic-person-a",
   "intentions": [
     {
-      "id": "person-a-mirror", "revision": 1, "purpose": "mirror",
-      "facts": ["I currently manage a small team"],
-      "aspirations": [], "inferences": ["May enjoy collaborative work"],
-      "consent": true, "disclosure": ["facts"], "role": "peer",
-      "available_from": 10, "available_until": 100, "expires_at": 120
-    },
-    {
-      "id": "person-a-window", "revision": 1, "purpose": "window",
-      "facts": ["I currently manage a small team"],
-      "aspirations": ["Learn guitar"], "inferences": ["Possibly interested in folk music"],
-      "consent": true, "disclosure": ["aspirations"], "role": "seek",
-      "available_from": 10, "available_until": 100, "expires_at": 120
-    },
-    {
-      "id": "person-a-social", "revision": 1, "purpose": "social",
-      "facts": [], "aspirations": ["Meet local musicians"], "inferences": [],
-      "consent": false, "disclosure": [], "role": "peer",
-      "available_from": 10, "available_until": 100, "expires_at": 120
+      "id": "person-a-learn-guitar",
+      "revision": 1,
+      "purpose": "integrated",
+      "facts": [
+        "I currently manage a small team"
+      ],
+      "aspirations": [
+        "Learn guitar"
+      ],
+      "inferences": [
+        "Possibly interested in folk music"
+      ],
+      "consent": true,
+      "disclosure": [
+        "aspirations"
+      ],
+      "role": "seek",
+      "available_from": 10,
+      "available_until": 100,
+      "expires_at": 120,
+      "perspectives": {
+        "mirror": [
+          "I manage a small team and have limited practice time"
+        ],
+        "window": [
+          "Learn guitar and explore unfamiliar musical styles"
+        ],
+        "social": [
+          "Find a teacher or practice partner who welcomes beginners"
+        ]
+      },
+      "balance": {
+        "mirror": 0.3,
+        "window": 0.4,
+        "social": 0.3
+      }
     }
-  ],
-  "synthetic_vector_contract": {
-    "method": "manual-fixture-v1", "model": "synthetic-v1",
-    "dimension": 2, "normalization": "l2", "language": "en",
-    "values": [0.6, 0.8]
-  }
+  ]
 }

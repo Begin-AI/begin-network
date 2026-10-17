@@ -63,9 +63,9 @@
       "implementation": "experiments/embeddings/run.py"
     },
     {
-      "id": "begin/shared-index-v1",
+      "id": "begin/shared-index-v2",
       "status": "experimental",
-      "purpose": "Secret-shared candidate scan and conditional introduction across three MPyC nodes; passive honest-majority only, visible metadata and bounded synthetic corpus.",
+      "purpose": "Balanced Mirror–Window–Social representation, secret-shared candidate scan and conditional introduction across three MPyC nodes; passive honest-majority only, visible metadata and bounded synthetic corpus.",
       "privacy": "synthetic-only",
       "implemented": true,
       "method_version": "1",

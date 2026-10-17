@@ -68,7 +68,7 @@ class BridgeTests(unittest.TestCase):
             self.assertFalse(checked['authority_granted'])
 
     def form(self, participant, intention_id, role, text='synthetic guitar', **changes):
-        options = dict(purpose='window', facts=[], aspirations=[text], inferences=[], role=role,
+        options = dict(perspectives={k: [text] for k in ('mirror','window','social')}, purpose='integrated', facts=[], aspirations=[text], inferences=[], role=role,
                        available_from=100, available_until=900, expires_at=1000, consent=True,
                        disclosure=['aspirations'])
         options.update(changes)

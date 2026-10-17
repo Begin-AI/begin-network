@@ -32,7 +32,7 @@ def main():
             for name, role, text in [('requester', 'seek', 'synthetic guitar'), ('guitar', 'offer', 'synthetic guitar'),
                                      ('piano', 'offer', 'synthetic piano')]:
                 person = Participant(root / name, encoder=encoder)
-                person.set_intention('intention', purpose='window', role=role, facts=[], aspirations=[text], inferences=[],
+                person.set_intention('intention', perspectives={k: [text] for k in ('mirror','window','social')}, purpose='integrated', role=role, facts=[], aspirations=[text], inferences=[],
                     available_from=now, available_until=now+600, expires_at=now+900, consent=True, disclosure=['aspirations'])
                 people.append(person)
             _, query = people[0].representation('intention')

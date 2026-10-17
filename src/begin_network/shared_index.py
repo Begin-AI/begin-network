@@ -18,12 +18,14 @@ from .local_discovery import validate_query
 from .runtime_bridge import canonical, require
 from .sealed import encryption_key, seal, sealed_digest, _decrypt_bound
 
-PROFILE = 'begin-shared-index-v1'
+PROFILE = 'begin-shared-index-v2'
 PARAMETERS = {'mpyc': '0.11', 'integer_bits': 48, 'security_parameter': 30,
               'parties': 3, 'passive_corruption_threshold': 1, 'scale': 1000,
               'max_records': 8, 'max_queries_per_key': 3, 'transport': 'mutual-tls',
-              'output': 'three-additive-shares-encrypted-to-requester'}
-PURPOSE = {'mirror': 0, 'window': 1, 'social': 2}
+              'output': 'three-additive-shares-encrypted-to-requester',
+              'representation': 'balanced-mirror-window-social-v2'}
+# The fixed slot binds the integrated v2 representation, not a selected perspective.
+PURPOSE = {'integrated': 2}
 ROLE = {'seek': 0, 'offer': 1, 'peer': 2}
 
 
@@ -193,7 +195,8 @@ class IndexNode:
                 self.db.execute('UPDATE records SET value=? WHERE id=?',
                     (canonical({'body': tombstone, 'expires': row['expires']}), record_id))
                 continue
-            if row['expires'] > int(self.clock()) and body['operation'] == 'enroll' and body['contract'] == method:
+            if (body.get('profile') == PROFILE and body.get('pool') == self.pool and
+                    row['expires'] > int(self.clock()) and body['operation'] == 'enroll' and body['contract'] == method):
                 rows.append(row)
         return rows
 

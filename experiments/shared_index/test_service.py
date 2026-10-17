@@ -70,7 +70,7 @@ class ServiceTests(unittest.TestCase):
     def person(self, name, role):
         p = Participant(self.root / name, encoder=SyntheticEncoder())
         now = int(time.time())
-        p.set_intention('intent', purpose='window', role=role, facts=[], aspirations=['synthetic guitar'], inferences=[],
+        p.set_intention('intent', perspectives={k: ['synthetic guitar'] for k in ('mirror','window','social')}, purpose='integrated', role=role, facts=[], aspirations=['synthetic guitar'], inferences=[],
                         consent=True, disclosure=['aspirations'], available_from=now, available_until=now+600, expires_at=now+900)
         self.people.append(p)
         return p

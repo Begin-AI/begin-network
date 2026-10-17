@@ -10,37 +10,37 @@
     false
   ],
   "experiment": "shared-index-pinned-minilm",
-  "method": "begin/minilm-intention-v1",
-  "model": "sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41;tagged-intentions-v1",
+  "method": "begin/minilm-balanced-intention-v2",
+  "model": "sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41;balanced-perspectives-v2",
   "model_manifest_sha256": "9cf8ce8fba6ff86a0dc9fe957dcc2e8f80b7388bbc797e4dc4fa7dca0647be91",
   "parties": [
     {
-      "bytes_sent": 5565494,
-      "elapsed_seconds": 3.938349707983434,
+      "bytes_sent": 5554248,
+      "elapsed_seconds": 3.696130207972601,
       "learns_complete_vectors": false,
       "learns_match_bits": false,
       "party": 0,
-      "pid": 59551,
+      "pid": 35288,
       "rows": 2,
       "tls": true
     },
     {
-      "bytes_sent": 5565494,
-      "elapsed_seconds": 3.9382954579778016,
+      "bytes_sent": 5554248,
+      "elapsed_seconds": 3.69610962504521,
       "learns_complete_vectors": false,
       "learns_match_bits": false,
       "party": 1,
-      "pid": 59552,
+      "pid": 35289,
       "rows": 2,
       "tls": true
     },
     {
-      "bytes_sent": 5565494,
-      "elapsed_seconds": 3.938400625018403,
+      "bytes_sent": 5554248,
+      "elapsed_seconds": 3.69617920788005,
       "learns_complete_vectors": false,
       "learns_match_bits": false,
       "party": 2,
-      "pid": 59553,
+      "pid": 35290,
       "rows": 2,
       "tls": true
     }
@@ -49,15 +49,15 @@
   "semantic_quality_evaluated": false,
   "source_hashes": {
     "discovery_session.py": "612e52588992dbbbe482178a2b482302ccb39e779a407828cbba1324df781354",
-    "encoders.py": "8a0a3a6b2d3e0c70e796ce4283dc0983260e05e3caf278f871384b9b90fce9f4",
+    "encoders.py": "36f730a8c6f00b017778ef999aa0e74be58dc2a67053b7506c527a913dba4d49",
     "envelope.py": "cad452bc0a3823e50198bb3f15b7455003552f713702c03dcb2c3e0d67d6c6e8",
-    "intentions.py": "250834a1ee7df37ff450107601e8e19b39ac54ce5ed126bb66f6a5300d02b8b9",
+    "intentions.py": "c425dcea04f6523f94088fc4cb26d51f1f4d326c638c8ef9e787a8e788d9ca12",
     "introductions.py": "1acacab9806c50d4eb0440152a87cce367f8f30455e4c603acc6f96603cc3bd5",
-    "local_discovery.py": "7f10f790b14034cd69fdb3d12b0cab76b08aed13d8fdf187f4d65993743c1fd2",
-    "party.py": "5f73f5f7db88ea395c150308242f91ed4f81900229169d1de5a87b6a20263240",
-    "runtime_bridge.py": "fa8cb03080330b68630e0934eb82463539f4d04c0420b5321e57cf988298479c",
+    "local_discovery.py": "40e56f1237a8879910de21bf1717a81224d08bd96c72648681af3d6defedcfc5",
+    "party.py": "b6bf641f1be6501155b5fde68d915ad587ce2d14719976fb1e9d8853635c5659",
+    "runtime_bridge.py": "5f113209d6dcbd8d72ba3691b8a5097ac23d51e7a57a5a4c5f7dde144bfac41a",
     "sealed.py": "62b7abc4038eaa8da1f23f7657cfee7e28beed1fc9bfd8b023495be0495ee661",
-    "shared_index.py": "46934d451e1fbc5fbd5210ecf00d7eaed7e936029db2cb930911de0f4ddc4ccf",
+    "shared_index.py": "cc9fd88d3e77e0c5d4020711ff8a33f32eba205fe58c05fbc131816c03704935",
     "support.py": "1dfa267c199d43b37bf6465d197e4154c10cc186bc0281fc4035f820e110dba8"
   },
   "synthetic_only": true

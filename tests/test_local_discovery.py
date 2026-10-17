@@ -13,7 +13,7 @@ class LocalDiscoveryTests(unittest.TestCase):
         self.requester,self.owner=[generate_key() for _ in range(2)]
         self.encryption=encryption_key()
         self.keys={k['kid']:decode(k['public']) for k in (self.requester,self.owner)}
-        self.query={'method':'synthetic-l2-v1','model':'manual-fixture','purpose':'window','role':'seek',
+        self.query={'method':'synthetic-l2-v1','model':'manual-fixture','purpose':'integrated','role':'seek',
                     'available_from':100,'available_until':190,'values':[1.0,0.0]}
         self.candidate=dict(self.query,role='offer')
         self.box=seal(json.dumps(self.query).encode(),decode(self.encryption['public']),'query-1',self.owner['kid'])

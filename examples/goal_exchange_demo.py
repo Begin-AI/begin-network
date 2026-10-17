@@ -94,9 +94,9 @@ def discover(scenario, *, requester_topic='guitar', mentor_topic='guitar', reque
     if requester_topic not in topics or mentor_topic not in topics:
         raise ValueError('only declared synthetic topic fixtures supported')
     store = Store()
-    store.create('learner','window',aspirations=['Learn '+requester_topic],consent=True,disclosure=['aspirations'],
+    store.create('learner','integrated',perspectives={k: ['Learn '+requester_topic] for k in ('mirror','window','social')},aspirations=['Learn '+requester_topic],consent=True,disclosure=['aspirations'],
                  role='seek',available_from=100,available_until=190,expires_at=200)
-    store.create('mentor','window',facts=['Teach '+mentor_topic],consent=True,disclosure=['facts'],
+    store.create('mentor','integrated',perspectives={k: ['Teach '+mentor_topic] for k in ('mirror','window','social')},facts=['Teach '+mentor_topic],consent=True,disclosure=['facts'],
                  role='offer',available_from=100,available_until=190,expires_at=200)
     def representation(id,topic):
         vector = store.vector(id,[float(topic==item) for item in topics],

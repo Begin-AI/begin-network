@@ -1,5 +1,13 @@
 # Completion audit
 
+## Integrated representation correction — 17 October 2026
+
+The founder clarified that Mirror, Window and Social must be balanced in one representation. The prior implementation and architecture explanation wrongly treated them as mutually exclusive purposes. The participant runtime now requires all three views with editable positive weights; both synthetic and pinned MiniLM encoders produce one normalized weighted vector. The private matcher uses a fixed integrated-v2 marker instead of a same-purpose category gate. Roles, availability, consent and relevance thresholds remain separate constraints.
+
+New encoder/model and shared-index versions reject old single-purpose records; migration requires explicit recreation and re-enrollment. Tests exercise each view's contribution, balance effects, invalid/missing views, legacy rejection, revision invalidation and the private computation's combined-balance predicate. Historical v1 lexical benchmark inputs/results remain explicitly labeled archival; they are not used by the corrected runtime. This corrects the representation structure, not the still-unfinished semantic quality or privacy guarantees.
+
+Validation: 157 core tests, 11 private-index tests and three HTTPS/MCP service tests passed locally. The pinned 384-dimensional model predicate comparison also passed, with refreshed source-bound evidence. Source/wheel builds and public-index structural validation passed; no live deployment or remote CI run is claimed.
+
 ## HTTPS discovery services — 15 October 2026
 
 Three HTTPS node services now accept separately authorized enrollment and query callers, issue their own session approvals, schedule bounded workers and retain encrypted results across service restart. The requester runner persists jobs before submission. Five optional MCP tools cover enrollment, withdrawal, search, polling and saved-match contact. The official SDK test closes and reopens two MCP adapters while the node services retain the search. Nodes also compare session digests over their computation connections before using shares.

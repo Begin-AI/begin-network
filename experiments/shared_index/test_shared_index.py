@@ -7,7 +7,7 @@ import time
 import unittest
 
 from begin_network.encoders import SyntheticEncoder
-from begin_network.envelope import Rejected, decode, generate_key
+from begin_network.envelope import Rejected, decode, generate_key, strict_json
 from begin_network.runtime_bridge import Participant, BlindRelay, canonical
 from begin_network.shared_index import (IndexNode, PARAMETERS, contract, fingerprint, open_json, private_row,
     public_snapshot, reconstruct, revocations, signed)
@@ -17,10 +17,10 @@ MEASUREMENTS = []
 
 
 class Encoder(SyntheticEncoder):
-    def encode(self, intention):
-        if intention.aspirations == ('synthetic unfamiliar option',) or intention.aspirations == ['synthetic unfamiliar option']:
+    def encode_perspective(self, name, values):
+        if list(values) == ['synthetic unfamiliar option']:
             return [0.3, math.sqrt(0.91)]
-        return super().encode(intention)
+        return super().encode_perspective(name, values)
 
 
 class SharedIndexTests(unittest.TestCase):
@@ -41,15 +41,34 @@ class SharedIndexTests(unittest.TestCase):
             participant.close()
         self.tmp.cleanup()
 
-    def participant(self, name, role, purpose='window', text='synthetic guitar', **changes):
+    def participant(self, name, role, purpose='integrated', text='synthetic guitar', **changes):
         participant = Participant(self.root / name, encoder=Encoder())
-        options = dict(purpose=purpose, role=role, facts=[], aspirations=[text], inferences=[],
+        options = dict(perspectives={k: [text] for k in ('mirror','window','social')}, purpose=purpose, role=role, facts=[], aspirations=[text], inferences=[],
                        consent=True, disclosure=['aspirations'], available_from=self.now,
                        available_until=self.now+600, expires_at=self.now+900)
         options.update(changes)
         participant.set_intention('intention', **options)
         self.participants.append(participant)
         return participant
+
+    def test_persisted_v1_rows_are_not_reinterpreted_as_integrated(self):
+        node = self.pool.nodes[0]
+        identifier, raw = node.db.execute('SELECT id,value FROM records').fetchone()
+        stored = strict_json(raw)
+        stored['body']['profile'] = 'begin-shared-index-v1'
+        node.db.execute('UPDATE records SET value=? WHERE id=?', (canonical(stored), identifier))
+        self.assertEqual(node.snapshot(contract(self.query)), [])
+
+    def test_private_matching_uses_the_combined_balance(self):
+        views = {'mirror': ['synthetic guitar'], 'window': ['synthetic piano'], 'social': ['synthetic guitar']}
+        less = self.participant('piano-heavy', 'offer', perspectives=views,
+                                balance={'mirror': .1, 'window': .8, 'social': .1})
+        more = self.participant('guitar-heavy', 'offer', perspectives=views,
+                                balance={'mirror': .4, 'window': .2, 'social': .4})
+        self.pool.enroll(less, 'intention')
+        self.pool.enroll(more, 'intention')
+        cards, *_ = self.pool.search(self.query, self.requester, minimum_score=800000)
+        self.assertEqual({c['identity']['address'] for c in cards}, {self.candidate.id, more.id})
 
     def test_connected_workers_reject_different_validly_authorized_sessions(self):
         session, configs = self.pool.prepare(self.query, self.requester)
@@ -65,11 +84,11 @@ class SharedIndexTests(unittest.TestCase):
         self.assertEqual(self.pool.run(configs, expect_failure=True), [])
         self.assertEqual(self.pool.last_metrics, [])
 
-    def test_private_candidate_scan_exploration_and_purpose_constraints(self):
+    def test_private_candidate_scan_exploration_and_integrated_constraints(self):
         other = self.participant('piano', 'offer', text='synthetic piano')
         self.pool.enroll(other, 'intention')
         self.pool.enroll(self.participant('wrong-role', 'seek'), 'intention')
-        mirror = self.participant('mirror', 'offer', purpose='mirror')
+        mirror = self.participant('balanced-piano', 'offer', text='synthetic piano')
         self.pool.enroll(mirror, 'intention')
         self.pool.enroll(self.participant('later', 'offer', available_from=self.now+650, available_until=self.now+700), 'intention')
         unfamiliar = self.participant('unfamiliar', 'offer', text='synthetic unfamiliar option')
@@ -103,9 +122,9 @@ class SharedIndexTests(unittest.TestCase):
         self.assertFalse(all(v in (0, 1) for v in partial_values[::33]))
         cards, *_ = self.pool.search(self.query, self.requester, minimum_score=200000)
         self.assertEqual({c['identity']['address'] for c in cards}, {self.candidate.id, unfamiliar.id})
-        mirror_query = dict(self.query, purpose='mirror')
+        _, mirror_query = self.participant('piano-query', 'seek', text='synthetic piano').representation('intention')
         cards, *_ = self.pool.search(mirror_query, self.requester)
-        self.assertEqual([c['identity']['address'] for c in cards], [mirror.id])
+        self.assertEqual({c['identity']['address'] for c in cards}, {mirror.id, other.id, unfamiliar.id, strict.id})
 
     def test_unknown_participants_complete_existing_encrypted_exchange(self):
         cards, *_ = self.pool.search(self.query, self.requester)

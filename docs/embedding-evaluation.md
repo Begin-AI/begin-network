@@ -1,5 +1,8 @@
 # Measured pretrained embedding evaluation
 
+Historical v1 benchmark: its corpus predates the integrated Mirror–Window–Social correction and is retained for reproducibility, not as the current representation contract. See `balanced-representation.md`.
+
+
 An isolated Python 3.12.13 CPU experiment downloaded and ran `sentence-transformers/all-MiniLM-L6-v2` on 24 frozen synthetic goal pairs. Learned similarity improves paraphrase recall in this fixture, but **does not reliably preserve negation, willingness, temporal skill claims, or the distinction between aspiration and capability**. It is unsuitable as the sole decision rule for Begin discovery.
 
 The patent's semantic signatures motivate relevant discovery, distinct from cryptographic signatures. This experiment tests relevance geometry; it does not test the entire patent design, private discovery, identity, trust, permission, or goal completion. Mirror, Window, and Social retain the founding meanings. Fixture roles are task-specific. A person's guitar-learning aspiration can be relevant to a teacher without ranking the person overall.

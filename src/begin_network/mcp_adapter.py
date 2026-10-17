@@ -54,15 +54,17 @@ def build_server(participant, relay, bootstrap, discovery=None):
     @safe_errors
     async def begin_set_intention(intention_id: str, purpose: str, facts: list[str], aspirations: list[str],
                                  inferences: list[str], role: str, available_from: int, available_until: int,
-                                 expires_at: int, consent: bool, disclosure: list[str], expected_revision: int | None = None) -> dict[str, Any]:
-        """Create/edit a synthetic Mirror, Window or Social intention on this participant's runner.
+                                 expires_at: int, consent: bool, disclosure: list[str], perspectives: dict[str, list[str]],
+                                 balance: dict[str, float], expected_revision: int | None = None) -> dict[str, Any]:
+        """Create/edit one synthetic intention balancing Mirror, Window and Social together on this participant's runner.
 
         Explain processing and obtain consent. Facts, aspirations and inferences remain distinct.
-        Edit requires the current revision; changing purpose creates another intention.
+        All three perspectives and positive weights summing to one are required.
+        Set purpose to integrated. Edits require the current revision.
         """
         return participant.set_intention(intention_id, purpose=purpose, facts=facts, aspirations=aspirations,
             inferences=inferences, role=role, available_from=available_from, available_until=available_until,
-            expires_at=expires_at, consent=consent, disclosure=disclosure, expected_revision=expected_revision)
+            expires_at=expires_at, consent=consent, disclosure=disclosure, expected_revision=expected_revision, perspectives=perspectives, balance=balance)
 
     @server.tool()
     @safe_errors

@@ -1,16 +1,21 @@
 from dataclasses import replace
 import unittest
-from begin_network.intentions import Store, InvalidIntention
+from begin_network.intentions import Store as BaseStore, InvalidIntention
+
+class Store(BaseStore):
+    def create(self, *args, **kwargs):
+        kwargs.setdefault('perspectives', {k: ['explicit synthetic test view'] for k in ('mirror','window','social')})
+        return super().create(*args, **kwargs)
 
 
 class IntentionLifecycleTests(unittest.TestCase):
     def setUp(self):
         self.store = Store()
-        self.store.create('rima-window', 'window', facts=['I run a company'], aspirations=['Learn guitar'],
+        self.store.create('rima-window', 'integrated', facts=['I run a company'], aspirations=['Learn guitar'],
                           inferences=['Possibly interested in folk music'], consent=True,
                           disclosure=['aspirations'], role='seek', available_from=10,
                           available_until=100, expires_at=120)
-        self.store.create('teacher-window', 'window', facts=['I teach guitar'], consent=True,
+        self.store.create('teacher-window', 'integrated', facts=['I teach guitar'], consent=True,
                           disclosure=['facts'], role='offer', available_from=20,
                           available_until=90, expires_at=120)
 
@@ -49,13 +54,13 @@ class IntentionLifecycleTests(unittest.TestCase):
         self.store.retire('teacher-window',1)
         with self.assertRaises(InvalidIntention): self.store.edit('teacher-window',2,consent=True)
         with self.assertRaises(InvalidIntention): self.store.disclose('teacher-window',30)
-        fresh=Store();fresh.create('a','mirror',consent=True,available_until=10,expires_at=10)
+        fresh=Store();fresh.create('a','integrated',consent=True,available_until=10,expires_at=10)
         with self.assertRaises(InvalidIntention): fresh.disclose('a',10)
 
-    def test_multiple_purposes_are_independent(self):
-        self.store.create('rima-mirror','mirror',facts=['Learning music'],consent=True,
+    def test_multiple_integrated_intentions_are_independent(self):
+        self.store.create('rima-mirror','integrated',facts=['Learning music'],consent=True,
                           available_until=100,expires_at=120)
-        self.store.create('rima-social','social',aspirations=['Meet local musicians'],consent=True,
+        self.store.create('rima-social','integrated',aspirations=['Meet local musicians'],consent=True,
                           available_until=100,expires_at=120)
         self.store.edit('rima-window',1,aspirations=['Learn piano'])
         self.assertEqual(self.store.get('rima-social').revision,1)
@@ -77,10 +82,10 @@ class IntentionLifecycleTests(unittest.TestCase):
         with self.assertRaises(InvalidIntention):self.store.compare(*self.vectors(),now=30)
 
     def test_lifecycle_validation(self):
-        with self.assertRaises(InvalidIntention):self.store.create('bad','window',available_until=0)
-        with self.assertRaises(InvalidIntention):self.store.edit('rima-window',1,purpose='social')
+        with self.assertRaises(InvalidIntention):self.store.create('bad','integrated',available_until=0)
+        with self.assertRaises(InvalidIntention):self.store.edit('rima-window',1,purpose='integrated')
         with self.assertRaises(InvalidIntention):self.store.edit('rima-window',1,disclosure=['private-key'])
-        with self.assertRaises(InvalidIntention):self.store.create('rima-window','window')
+        with self.assertRaises(InvalidIntention):self.store.create('rima-window','integrated')
         with self.assertRaises(InvalidIntention):self.store.edit('rima-window',1,facts='accidental string')
 
 

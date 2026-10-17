@@ -14,7 +14,7 @@ Participants express intentions; agents act within delegation; discovery nodes i
 
 ## Intention model
 
-An intention has an ID, purpose, issuer, expiry, and editable mirror/window/social representations. Every representation declares method ID, model revision, dimensions, normalization, language support, and provenance (expressed fact, aspiration, or inference). Structured constraints carry roles, timing, location, disclosure, and resource limits. Similarity never overrides a hard constraint, grants access, or constitutes consent. Complementary roles require explicit evaluation. Unsupported representation comparisons MUST fail.
+An intention has an ID, purpose, issuer, expiry, and one editable representation balancing Mirror, Window and Social together. They MUST NOT be treated as mutually exclusive intention categories. Every representation declares method ID, model revision, dimensions, normalization, language support, and provenance (expressed fact, aspiration, or inference). Structured constraints carry roles, timing, location, disclosure, and resource limits. Similarity never overrides a hard constraint, grants access, or constitutes consent. Complementary roles require explicit evaluation. Unsupported representation comparisons MUST fail.
 
 ## Exchange state machine
 

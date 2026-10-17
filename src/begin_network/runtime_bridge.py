@@ -142,14 +142,15 @@ class Participant(Introductions):
 
     def set_intention(self, intention_id, *, purpose, facts, aspirations, inferences, role,
                       available_from, available_until, expires_at, consent, disclosure,
-                      expected_revision=None):
+                      expected_revision=None, perspectives=None, balance=None):
         require(isinstance(intention_id, str) and 1 <= len(intention_id) <= 128, 'invalid intention ID')
-        require(len(canonical([facts, aspirations, inferences])) <= 8192, 'intention too large')
+        require(len(canonical([facts, aspirations, inferences, perspectives, balance])) <= 8192, 'intention too large')
         with self.transaction():
             store = self._store()
             options = dict(facts=facts, aspirations=aspirations, inferences=inferences, role=role,
                            available_from=available_from, available_until=available_until,
-                           expires_at=expires_at, consent=consent, disclosure=disclosure)
+                           expires_at=expires_at, consent=consent, disclosure=disclosure,
+                           perspectives=perspectives, balance=balance if balance is not None else {k: 1/3 for k in ('mirror', 'window', 'social')})
             if self.get('intentions', intention_id) is None:
                 require(expected_revision is None, 'unknown intention revision')
                 require(len(store._intentions) < 32, 'intention limit reached')
