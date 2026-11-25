@@ -1,5 +1,8 @@
 # Experimental discovery services
 
+**Later founder correction:** a separate hosted runner receiving plaintext intentions or complete embeddings is not an acceptable final privacy boundary. This document records experimental implementation/history. Follow [the current handoff](../HANDOFF.md) for the required client-environment execution investigation and unresolved privacy requirements.
+
+
 The original runtime now has an HTTPS interface for each of the three selected discovery nodes. Enrollment and query shares travel from the participant's runner to those services. Each node checks its own policy and signs its own approval; the requester never holds node signing keys. The older test harness is no longer needed to submit a search through the new MCP tools.
 
 This remains a **synthetic, same-host tested pilot**. No independent production operators, live GPT/Claude connection, malicious-secure computation, anonymous membership or semantic quality result is established by these tests. The existing Sites application is separate.

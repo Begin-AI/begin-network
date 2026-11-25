@@ -1,5 +1,8 @@
 # Begin network
 
+**Continuing this project? Start with [HANDOFF.md](HANDOFF.md).** It contains the latest founder requirements, complete source map, reproduction commands and exact unfinished client test. The separate hosted-runner design was rejected on privacy grounds; older implementation documentation is not approval of that architecture. The earlier website and OAuth prototype source is preserved under [prototypes/hosted-discovery](prototypes/hosted-discovery/README.md).
+
+
 Private development seed for voluntary human and AI coordination.
 Originating vision: Rima Al Shikh · Begin AI.
 

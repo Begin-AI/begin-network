@@ -1,5 +1,8 @@
 # Original-runtime participant bridge
 
+**Later founder correction:** a separate hosted runner receiving plaintext intentions or complete embeddings is not an acceptable final privacy boundary. This document records experimental implementation/history. Follow [the current handoff](../HANDOFF.md) for the required client-environment execution investigation and unresolved privacy requirements.
+
+
 Originating vision: Rima Al Shikh · Begin AI. Experimental, synthetic-only, 15 October 2026.
 
 This implementation corrects the separate hosted inbox pilot's architectural drift. MCP tool calls now invoke the original `intentions`, `discovery_index`, `envelope`, `local_discovery`, `sealed` and `coordination` modules. It does not replace those modules with exact-topic database routing. It does not complete the founding brief's P1–E4 gates.

@@ -1,5 +1,8 @@
 # Completion audit
 
+**Later founder correction:** a separate hosted runner receiving plaintext intentions or complete embeddings is not an acceptable final privacy boundary. This document records experimental implementation/history. Follow [the current handoff](../HANDOFF.md) for the required client-environment execution investigation and unresolved privacy requirements.
+
+
 ## Integrated representation correction — 17 October 2026
 
 The founder clarified that Mirror, Window and Social must be balanced in one representation. The prior implementation and architecture explanation wrongly treated them as mutually exclusive purposes. The participant runtime now requires all three views with editable positive weights; both synthetic and pinned MiniLM encoders produce one normalized weighted vector. The private matcher uses a fixed integrated-v2 marker instead of a same-purpose category gate. Roles, availability, consent and relevance thresholds remain separate constraints.

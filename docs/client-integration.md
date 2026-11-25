@@ -1,5 +1,8 @@
 # Existing-client discovery integration
 
+**Later founder correction:** a separate hosted runner receiving plaintext intentions or complete embeddings is not an acceptable final privacy boundary. This document records experimental implementation/history. Follow [the current handoff](../HANDOFF.md) for the required client-environment execution investigation and unresolved privacy requirements.
+
+
 The product target is for people to use their existing GPT and Claude clients to submit discovery requests and receive responses or discovery-related requests, with no separately installed Begin app. Client connection and consent may still be necessary. A phone need not run the Python runtime for this experience.
 
 ## Architecture correction — 15 October 2026
